@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Deep Learning - Sosiologi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a6c;
+            --secondary: #c62828;
+            --accent: #f9a825;
+            --light: #f5f7fa;
+            --dark: #2c3e50;
+            --success: #2e7d32;
+            --info: #0288d1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--accent);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .module-title {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .chapter {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+        }
+        
+        .school-info {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .preservation-badge {
+            background: linear-gradient(135deg, var(--success), #4caf50);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tabs-container {
+            background: linear-gradient(90deg, var(--dark), #34495e);
+            position: relative;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .tabs {
+            display: flex;
+            min-width: max-content;
+            padding: 0 10px;
+        }
+        
+        .tab {
+            padding: 16px 28px;
+            cursor: pointer;
+            color: white;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+            font-size: 1.05em;
+        }
+        
+        .tab:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .tab.active {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: white;
+        }
+        
+        .tab-content {
+            padding: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+            margin: 25px 0 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            color: var(--secondary);
+            background: rgba(198, 40, 40, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            font-size: 1.4em;
+            padding-left: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.4em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 14px 18px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .section {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--info);
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, #fff8e1, #ffecb3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight:before {
+            content: "!";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8em;
+            color: rgba(249, 168, 37, 0.1);
+            font-weight: bold;
+            transform: rotate(20deg);
+        }
+        
+        .footer {
+            background: linear-gradient(90deg, var(--dark), #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.1em;
+            border-top: 4px solid var(--accent);
+            position: relative;
+        }
+        
+        .footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            border: none;
+            padding: 0;
+        }
+        
+        .logo {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.2em;
+            margin-top: 15px;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+        }
+        
+        .year-badge {
+            background: linear-gradient(135deg, var(--secondary), #d32f2f);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .module-title {
+                font-size: 1.5em;
+            }
+            
+            .chapter {
+                font-size: 1.3em;
+            }
+            
+            .tab {
+                padding: 14px 22px;
+                font-size: 0.95em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 1.7em;
+            }
+            
+            .module-title {
+                font-size: 1.3em;
+            }
+            
+            .chapter {
+                font-size: 1.2em;
+                padding: 6px 15px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 12px 18px;
+                font-size: 0.9em;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            h3 {
+                font-size: 1.2em;
+            }
+            
+            th, td {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+            
+            .footer {
+                padding: 25px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .module-title {
+                font-size: 1.2em;
+            }
+            
+            .chapter {
+                font-size: 1.1em;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 0.85em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+            }
+            
+            h2 i {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.85em;
+            }
+            
+            .footer h3 {
+                font-size: 1.3em;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1><i class="fas fa-book-open"></i> MODUL AJAR DEEP LEARNING</h1>
+                <div class="module-title">MATA PELAJARAN : SOSIOLOGI</div>
+                <div class="chapter">BAB : PENGANTAR SOSIOLOGI</div>
+                <div class="school-info">
+                    <i class="fas fa-school"></i> SMA NEGERI 1 BENCULUK CLURING BANYUWANGI
+                </div>
+                <div class="preservation-badge">
+                    <i class="fas fa-check-circle"></i> PRESERVASI KONTEN 100%
+                </div>
+            </div>
+        </header>
+        
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'identitas')"><i class="fas fa-id-card"></i> IDENTITAS MODUL</button>
+                <button class="tab" onclick="openTab(event, 'informasi')"><i class="fas fa-info-circle"></i> INFORMASI UMUM</button>
+                <button class="tab" onclick="openTab(event, 'desain')"><i class="fas fa-pencil-ruler"></i> DESAIN PEMBELAJARAN</button>
+                <button class="tab" onclick="openTab(event, 'rencana')"><i class="fas fa-calendar-alt"></i> RENCANA PELAKSANAAN</button>
+                <button class="tab" onclick="openTab(event, 'asesmen')"><i class="fas fa-clipboard-check"></i> ASESMEN PEMBELAJARAN</button>
+                <button class="tab" onclick="openTab(event, 'tindak')"><i class="fas fa-forward"></i> TINDAK LANJUT</button>
+            </div>
+        </div>
+        
+        <!-- Tab A: Identitas Modul -->
+        <div id="identitas" class="tab-content active">
+            <h2><i class="fas fa-id-card"></i> A. IDENTITAS MODUL</h2>
+            
+            <div class="section">
+                <ul>
+                    <li><strong>Nama Sekolah:</strong> SMAN 1 Cluring</li>
+                    <li><strong>Nama Penyusun:</strong> Moh. Suharso, S.Pd</li>
+                    <li><strong>Mata Pelajaran:</strong> Sosiologi</li>
+                    <li><strong>Kelas/Fase/Semester:</strong> X/E/Ganjil</li>
+                    <li><strong>Pertemuan Ke:</strong> 13 S.d 14</li>
+                    <li><strong>Alokasi Waktu:</strong> 6 JP (2 Pertemuan @ 3 JP)</li>
+                    <li><strong>Tahun Pelajaran:</strong> 2025/2026</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <h3><i class="fas fa-lightbulb"></i> Catatan Penting</h3>
+                <p>Modul ini dirancang untuk pembelajaran sosiologi dengan pendekatan deep learning yang mendorong pemahaman konseptual mendalam dan penerapan dalam konteks kehidupan nyata.</p>
+            </div>
+        </div>
+        
+        <!-- Tab B: Informasi Umum -->
+        <div id="informasi" class="tab-content">
+            <h2><i class="fas fa-info-circle"></i> B. INFORMASI UMUM</h2>
+            
+            <h3>1. Identifikasi Kesiapan Peserta Didik</h3>
+            <div class="section">
+                <ul>
+                    <li>Peserta didik telah mengenal dasar-dasar ilmu sosial dan memiliki pengetahuan awal tentang kehidupan bermasyarakat.</li>
+                    <li>Peserta didik memiliki kemampuan observasi sederhana terhadap fenomena sosial di lingkungan sekitar.</li>
+                    <li>Peserta didik terbiasa bekerja dalam kelompok dan menyampaikan pendapat dalam diskusi.</li>
+                </ul>
+            </div>
+            
+            <h3>2. Karakteristik Materi</h3>
+            <div class="section">
+                <ul>
+                    <li><strong>Minggu ke-13:</strong> Memahami sifat sosiologi sebagai ilmu dengan menelaah ciri-ciri ilmu pengetahuan.</li>
+                    <li><strong>Minggu ke-14:</strong> Menganalisis penerapan paradigma sosiologi dalam fenomena sosial melalui studi kasus.</li>
+                    <li>Materi bersifat teoritis dan aplikatif, menggabungkan pemahaman konsep dengan keterampilan analisis.</li>
+                </ul>
+            </div>
+            
+            <h3>3. Dimensi Profil Lulusan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensi</th>
+                        <th>Relevansi dengan Materi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keimanan dan Ketakwaan</td>
+                        <td>Menumbuhkan rasa syukur atas keberagaman sosial dan ciptaan Tuhan</td>
+                    </tr>
+                    <tr>
+                        <td>Kewargaan</td>
+                        <td>Memahami peran dan tanggung jawab sebagai warga masyarakat</td>
+                    </tr>
+                    <tr>
+                        <td>Penalaran Kritis</td>
+                        <td>Menganalisis realitas sosial dengan teori sosiologi secara objektif</td>
+                    </tr>
+                    <tr>
+                        <td>Kreativitas</td>
+                        <td>Menyusun peta konsep dan memetakan hubungan teori dan fakta</td>
+                    </tr>
+                    <tr>
+                        <td>Kolaborasi</td>
+                        <td>Bekerja sama dalam studi kasus dan diskusi kelompok</td>
+                    </tr>
+                    <tr>
+                        <td>Mandiri</td>
+                        <td>Mengerjakan tugas individu dengan disiplin dan tanggung jawab</td>
+                    </tr>
+                    <tr>
+                        <td>Kesehatan</td>
+                        <td>Membangun sikap sosial yang sehat melalui interaksi yang baik</td>
+                    </tr>
+                    <tr>
+                        <td>Komunikasi</td>
+                        <td>Menyampaikan pendapat dan hasil diskusi dengan argumentatif</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab C: Desain Pembelajaran -->
+        <div id="desain" class="tab-content">
+            <h2><i class="fas fa-pencil-ruler"></i> C. DESAIN PEMBELAJARAN</h2>
+            
+            <h3>1. Capaian Pembelajaran (CP)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Elemen</th>
+                        <th>Capaian Pembelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pertemuan 13</td>
+                        <td>Pemahaman Konsep</td>
+                        <td>Peserta didik mampu menjelaskan sifat Sosiologi sebagai ilmu pengetahuan dengan menyebutkan ciri-cirinya secara tepat dan logis.</td>
+                    </tr>
+                    <tr>
+                        <td>Pertemuan 14</td>
+                        <td>Keterampilan Proses</td>
+                        <td>Peserta didik mampu menganalisis fenomena sosial dengan menerapkan paradigma sosiologi melalui kegiatan studi kasus dan diskusi.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. Lintas Disiplin Ilmu</h3>
+            <div class="section">
+                <ul>
+                    <li><strong>Bahasa Indonesia:</strong> Peserta didik dilatih untuk menyusun laporan hasil diskusi dan studi kasus secara sistematis, baik dalam bentuk tulisan maupun presentasi lisan.</li>
+                    <li><strong>Pendidikan Pancasila:</strong> Peserta didik memahami nilai-nilai keberagaman sosial dan tanggung jawab sebagai warga masyarakat, serta menginternalisasi sikap toleransi dan kepedulian sosial.</li>
+                    <li><strong>Informatika/TIK:</strong> Peserta didik memanfaatkan media digital untuk menyajikan hasil kerja, seperti membuat peta konsep digital, presentasi, atau laporan berbasis teknologi.</li>
+                </ul>
+            </div>
+            
+            <h3>3. Tujuan Pembelajaran</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Topik</th>
+                        <th>Tujuan Pembelajaran</th>
+                        <th>Aktivitas Pembelajaran</th>
+                        <th>Penilaian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13</td>
+                        <td>Sosiologi sebagai Ilmu Pengetahuan</td>
+                        <td>Peserta didik secara spesifik dan terukur mampu menyebutkan minimal 4 dari 5 ciri ilmu pengetahuan dalam Sosiologi secara benar setelah mengikuti diskusi kelas dan membuat peta konsep, dalam waktu 1 x 3 JP, sesuai dengan konteks kehidupan sosial di sekitarnya.</td>
+                        <td>
+                            <ul>
+                                <li>Ceramah interaktif tentang ciri-ciri ilmu pengetahuan dalam Sosiologi</li>
+                                <li>Diskusi kelas untuk menyebutkan ciri-ciri tersebut dengan contoh nyata</li>
+                                <li>Pembuatan peta konsep individu atau kelompok kecil</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Formatif: Kuis singkat (5 soal pilihan ganda/lisan)</li>
+                                <li>Produk: Peta konsep (dinilai dari isi, kerapian, dan keterkaitan konsep)</li>
+                                <li>Kriteria keberhasilan: Minimal 80% peserta didik mampu menyebutkan ciri sosiologi sebagai ilmu dengan benar</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Penerapan Paradigma Sosiologi dalam Kehidupan Sosial</td>
+                        <td>Peserta didik mampu menganalisis satu fenomena sosial di masyarakat dengan menggunakan minimal dua paradigma sosiologi (fungsionalisme, konflik, interaksionisme simbolik) secara lisan atau tulisan dalam waktu 1 x 3 JP, melalui kegiatan studi kasus dan diskusi kelompok.</td>
+                        <td>
+                            <ul>
+                                <li>Pemberian studi kasus terkait fenomena sosial di lingkungan sekitar (misal: kemiskinan, urbanisasi, konflik sosial)</li>
+                                <li>Diskusi kelompok untuk menganalisis kasus dengan menerapkan teori paradigma</li>
+                                <li>Presentasi hasil diskusi kelompok</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Proses: Observasi diskusi (keaktifan, peran dalam kelompok)</li>
+                                <li>Produk: Hasil analisis kasus (tulisan atau presentasi)</li>
+                                <li>Kriteria keberhasilan: Minimal 80% kelompok mampu mengaitkan fenomena sosial dengan teori paradigma secara tepat</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4. Topik Pembelajaran Kontekstual</h3>
+            <div class="highlight">
+                <p>Topik pembelajaran dikaitkan langsung dengan realitas kehidupan sosial di lingkungan peserta didik:</p>
+                <ul>
+                    <li>Fenomena kemiskinan dan ketimpangan sosial</li>
+                    <li>Dinamika keberagaman budaya dan agama</li>
+                    <li>Persoalan sosial di lingkungan sekitar (misal: pengangguran, urbanisasi, tawuran pelajar)</li>
+                    <li>Konflik sosial dan upaya penyelesaiannya</li>
+                </ul>
+            </div>
+            
+            <h3>5. Kerangka Pembelajaran</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Pertemuan 13</th>
+                        <th>Pertemuan 14</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model</td>
+                        <td>Discovery Learning</td>
+                        <td>Problem Based Learning</td>
+                    </tr>
+                    <tr>
+                        <td>Strategi</td>
+                        <td>Ceramah interaktif, diskusi kelas, peta konsep. Peserta didik menggunakan handphone untuk mencari referensi tentang ciri-ciri ilmu sosiologi dan membuat peta konsep digital yang diunggah ke Google Sites kelas.</td>
+                        <td>Studi kasus, diskusi kelompok, presentasi hasil analisis. Data kasus dikumpulkan menggunakan HP, kemudian disusun menjadi laporan atau presentasi yang diunggah ke Google Sites agar dapat diakses bersama.</td>
+                    </tr>
+                    <tr>
+                        <td>Mindful Learning</td>
+                        <td>Peserta didik menyadari pentingnya memahami ciri ilmu sosiologi untuk membedakan dengan opini semata. Refleksi dilakukan secara online melalui Google Form di HP dan hasilnya diposting di Google Sites sebagai pembelajaran bersama.</td>
+                        <td>Peserta didik sadar pentingnya menganalisis masalah sosial dengan teori sosiologi agar tidak bias pendapat pribadi. Peserta membuat catatan refleksi di HP dan membagikannya di Google Sites agar bisa ditanggapi oleh teman-teman lain.</td>
+                    </tr>
+                    <tr>
+                        <td>Meaningful Learning</td>
+                        <td>Mengaitkan ciri ilmu pengetahuan dengan kehidupan sosial sehari-hari. Peserta didik mencari contoh realitas sosial melalui HP dan mendokumentasikannya di Google Sites untuk memperkaya diskusi kelas.</td>
+                        <td>Menghubungkan teori paradigma dengan fenomena sosial nyata di lingkungan sekitar. Berita sosial atau fenomena lokal diakses via HP dan dikaitkan dengan teori, lalu diposting di Google Sites kelas.</td>
+                    </tr>
+                    <tr>
+                        <td>Joyful Learning</td>
+                        <td>Diskusi interaktif dan permainan sederhana untuk mengenali ciri-ciri ilmu. Peserta didik membuat kuis atau game sederhana di HP untuk menguji pemahaman teman, kemudian membagikannya di Google Sites.</td>
+                        <td>Diskusi kelompok dengan role play membahas kasus sosial secara aktif dan menyenangkan. Simulasi role play direkam dengan HP dan diunggah ke Google Sites sebagai dokumentasi pembelajaran.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab D: Rencana Pelaksanaan Pembelajaran -->
+        <div id="rencana" class="tab-content">
+            <h2><i class="fas fa-calendar-alt"></i> D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <h3>Pertemuan 13: Sosiologi sebagai Ilmu Pengetahuan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pembelajaran dengan salam, doa, dan presensi.</li>
+                                <li>Guru menyampaikan tujuan pembelajaran dengan teknik Mindful Learning: "Anak-anak, hari ini kita akan mempelajari apa bedanya ilmu pengetahuan dengan pendapat biasa. Apakah kalian pernah mendengar berita yang belum tentu benar? Nah, hari ini kita akan belajar supaya bisa membedakan mana yang ilmiah dan mana yang sekadar opini."</li>
+                                <li>Guru menghubungkan materi dengan kehidupan sehari-hari sebagai Meaningful Learning: "Contohnya, ketika kita melihat berita tentang kemiskinan atau konflik di media, bagaimana cara kita menganalisisnya secara ilmiah?"</li>
+                                <li>Guru membangun suasana belajar yang menyenangkan (Joyful Learning) dengan memberikan ice breaking singkat seperti kuis cepat tentang fakta unik sosiologi.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <p><strong>Understanding:</strong></p>
+                            <ul>
+                                <li>Guru menjelaskan ciri-ciri Sosiologi sebagai ilmu pengetahuan melalui ceramah interaktif.</li>
+                                <li>Guru memfasilitasi tanya jawab dan diskusi tentang perbedaan pengetahuan biasa dengan ilmu sosiologi.</li>
+                            </ul>
+                            
+                            <p><strong>Applying:</strong></p>
+                            <ul>
+                                <li>Peserta didik membuat peta konsep tentang ciri-ciri sosiologi sebagai ilmu.</li>
+                                <li>Setiap kelompok mempresentasikan hasil peta konsep.</li>
+                            </ul>
+                            
+                            <p><strong>Reflecting:</strong></p>
+                            <ul>
+                                <li>Guru memandu peserta didik untuk merefleksikan pentingnya berpikir ilmiah dalam memahami realitas sosial.</li>
+                                <li>Contoh sintaks refleksi: "Apa manfaat mengetahui sosiologi sebagai ilmu dalam kehidupan sehari-hari?"</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Guru memberikan umpan balik terhadap hasil kerja siswa.</li>
+                                <li>Guru dan siswa bersama-sama menyimpulkan materi hari ini.</li>
+                                <li>Guru memandu refleksi diri dengan pertanyaan: "Apa yang sudah saya pahami hari ini? Apa yang masih ingin saya pelajari?"</li>
+                                <li>Guru menutup pembelajaran dengan salam dan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Pertemuan 14: Penerapan Paradigma Sosiologi dalam Kehidupan Sosial</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pembelajaran dengan salam, doa, dan presensi.</li>
+                                <li>Guru menyampaikan tujuan pembelajaran dengan teknik Mindful Learning: "Hari ini kita akan belajar menganalisis permasalahan sosial yang sering terjadi di sekitar kita dengan teori sosiologi. Apakah kalian siap untuk berpikir kritis?"</li>
+                                <li>Menghubungkan materi dengan pengalaman siswa (Meaningful Learning): "Pernahkah kalian melihat konflik di lingkungan sekitar? Bagaimana cara kita memahami itu secara ilmiah?"</li>
+                                <li>Ice breaking atau permainan ringan untuk membangun suasana belajar yang positif (Joyful Learning).</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <p><strong>Understanding:</strong></p>
+                            <ul>
+                                <li>Guru membagikan studi kasus tentang fenomena sosial (misalnya: kemiskinan, urbanisasi, konflik sosial).</li>
+                                <li>Peserta didik membaca dan memahami isi kasus.</li>
+                            </ul>
+                            
+                            <p><strong>Applying:</strong></p>
+                            <ul>
+                                <li>Peserta didik menganalisis kasus dengan menerapkan dua paradigma sosiologi: fungsionalisme, konflik, atau interaksionisme simbolik.</li>
+                                <li>Diskusi kelompok dan presentasi hasil analisis.</li>
+                            </ul>
+                            
+                            <p><strong>Reflecting:</strong></p>
+                            <ul>
+                                <li>Guru memandu peserta didik membuat kesimpulan tentang manfaat menerapkan teori sosiologi dalam memahami fenomena sosial.</li>
+                                <li>Contoh sintaks refleksi: "Bagaimana paradigma sosiologi membantu kita memahami masalah sosial di sekitar?"</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Guru memberikan umpan balik terhadap hasil diskusi.</li>
+                                <li>Guru dan siswa menyimpulkan pembelajaran bersama.</li>
+                                <li>Guru memandu refleksi dengan pertanyaan: "Apa yang sudah saya pelajari tentang paradigma sosiologi hari ini?"</li>
+                                <li>Guru menutup pembelajaran dengan salam dan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab E: Asesmen Pembelajaran -->
+        <div id="asesmen" class="tab-content">
+            <h2><i class="fas fa-clipboard-check"></i> E. ASESMEN PEMBELAJARAN</h2>
+            
+            <h3>1. Asesmen Awal (Diagnostik)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13</td>
+                        <td>Tanya jawab lisan, kuis singkat</td>
+                        <td>Mengetahui pemahaman awal peserta didik tentang pengertian ilmu dan perbedaannya dengan opini</td>
+                        <td>
+                            <ul>
+                                <li>"Apa bedanya ilmu pengetahuan dengan pendapat sehari-hari?"</li>
+                                <li>"Coba sebutkan contoh pernyataan yang termasuk fakta sosial!"</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Diskusi awal, studi kasus ringan</td>
+                        <td>Mengidentifikasi pengetahuan awal peserta didik tentang paradigma sosiologi dan pengalaman mereka melihat fenomena sosial</td>
+                        <td>
+                            <ul>
+                                <li>"Apakah kalian pernah melihat konflik sosial di sekitar? Jelaskan!"</li>
+                                <li>"Bagaimana biasanya masyarakat menyelesaikan masalah sosial?"</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. Asesmen Proses (Formatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13</td>
+                        <td>Observasi, produk (Peta Konsep), Jurnal Refleksi</td>
+                        <td>Mengukur pemahaman peserta didik tentang ciri-ciri ilmu pengetahuan dalam sosiologi</td>
+                        <td>
+                            <ul>
+                                <li>Observasi keaktifan saat diskusi</li>
+                                <li>Penilaian peta konsep (keterkaitan konsep, kelengkapan isi)</li>
+                                <li>Jurnal refleksi: "Apa manfaat memahami ciri sosiologi sebagai ilmu?"</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Observasi, produk (Infografis atau Jaring Paradigma Sosiologi), Jurnal Refleksi</td>
+                        <td>Mengukur kemampuan peserta didik dalam menganalisis fenomena sosial dengan teori paradigma</td>
+                        <td>
+                            <ul>
+                                <li>Observasi kerja sama saat diskusi kasus</li>
+                                <li>Penilaian produk (infografis/jaring konsep hubungan fenomena dengan paradigma)</li>
+                                <li>Jurnal refleksi: "Bagaimana penerapan teori membantu memahami masalah sosial di masyarakat?"</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>3. Asesmen Akhir (Sumatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Sumatif</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen Rubrik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13</td>
+                        <td>Penilaian proyek peta konsep</td>
+                        <td>Menilai pemahaman peserta didik tentang ciri sosiologi sebagai ilmu secara menyeluruh</td>
+                        <td>
+                            <strong>Rubrik Penilaian Peta Konsep:</strong>
+                            <ul>
+                                <li>Kelengkapan ciri ilmu: 30%</li>
+                                <li>Keterkaitan antar konsep: 25%</li>
+                                <li>Kerapian dan kreativitas: 20%</li>
+                                <li>Kolaborasi (jika berkelompok): 15%</li>
+                                <li>Refleksi akhir: 10%</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Penilaian proyek analisis kasus sosial</td>
+                        <td>Menilai kemampuan peserta didik menganalisis isu sosial dengan paradigma sosiologi secara kritis dan kreatif</td>
+                        <td>
+                            <strong>Rubrik Penilaian Proyek:</strong>
+                            <ul>
+                                <li>Ketepatan analisis isu: 25%</li>
+                                <li>Solusi yang diajukan: 20%</li>
+                                <li>Penggunaan teori (paradigma): 25%</li>
+                                <li>Kreativitas penyajian (infografis, video, presentasi): 15%</li>
+                                <li>Kolaborasi dan peran aktif: 10%</li>
+                                <li>Penjiwaan nilai Pancasila (empati, toleransi): 5%</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab F: Rencana Tindak Lanjut -->
+        <div id="tindak" class="tab-content">
+            <h2><i class="fas fa-forward"></i> F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Tindak Lanjut Remedial</th>
+                        <th>Tindak Lanjut Pengayaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13</td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang belum mencapai ketuntasan diberikan pendalaman materi melalui diskusi ulang secara berkelompok kecil.</li>
+                                <li>Membuat rangkuman atau peta konsep ulang dengan bimbingan guru.</li>
+                                <li>Pemberian soal latihan tambahan terkait ciri-ciri ilmu pengetahuan secara lebih sederhana dan kontekstual.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang sudah tuntas diminta membuat contoh-contoh nyata perbedaan antara pengetahuan biasa dan pengetahuan ilmiah di kehidupan sehari-hari.</li>
+                                <li>Membuat mini presentasi atau video pendek tentang pentingnya sosiologi sebagai ilmu untuk dipublikasikan di kelas atau media sekolah.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang belum tuntas diarahkan untuk mengulang analisis studi kasus secara lebih sederhana dengan bimbingan guru.</li>
+                                <li>Guru memberikan contoh lain kasus serupa dan membimbing analisis dengan satu paradigma terlebih dahulu sebelum dua paradigma.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang sudah tuntas diberikan tugas menganalisis kasus sosial lain yang lebih kompleks secara mandiri atau berkelompok kecil.</li>
+                                <li>Membuat karya berupa artikel mini atau video tentang solusi atas fenomena sosial menggunakan paradigma sosiologi secara kreatif.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight">
+                <h3><i class="fas fa-exclamation-circle"></i> Catatan Implementasi</h3>
+                <p>Program remedial dan pengayaan diimplementasikan dengan mempertimbangkan kondisi dan kebutuhan spesifik peserta didik, dengan memanfaatkan teknologi digital untuk memfasilitasi pembelajaran yang fleksibel.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-overlay"></div>
+            <div class="footer-content">
+                <h3>MODUL AJAR DEEP LEARNING SOSIOLOGI</h3>
+                <div class="year-badge">TAHUN 2025</div>
+                <p>© SMA NEGERI 1 BENCULUK CLURING BANYUWANGI</p>
+                <p>Tahun Pelajaran 2025/2026 | Semester Ganjil</p>
+                <div class="logo">PRESERVASI KONTEN 100%</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tabs
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Scroll to top of the content
+            document.getElementById(tabName).scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // Add active class to the first tab on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".tab.active").click();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Pembelajaran Sosiologi - SMA Negeri 1 Cluring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+            --success: #10b981;
+            --purple: #8b5cf6;
+            --indigo: #4f46e5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 120px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--indigo));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .school-name h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .school-name p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 1.5rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background: #e69008;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        .modules {
+            padding: 0 1.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            font-size: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+        }
+        
+        .module-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .module-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .module-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+        
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .module-card:hover .module-image img {
+            transform: scale(1.1);
+        }
+        
+        .module-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .module-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .module-content p {
+            color: #555;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .module-objectives {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .module-objectives h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .module-objectives ul {
+            padding-left: 1.2rem;
+        }
+        
+        .module-objectives li {
+            margin-bottom: 0.4rem;
+            color: #444;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin-top: auto;
+        }
+        
+        .btn-secondary:hover {
+            background: #2563eb;
+            transform: translateX(5px);
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, var(--purple), var(--indigo));
+            color: white;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            margin: 4rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);
+        }
+        
+        .highlight-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .highlight h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1.5rem 2rem;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .contact-info i {
+            color: var(--accent);
+            margin-top: 5px;
+            min-width: 20px;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 0.7rem;
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.9rem;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            display: inline-block;
+            padding: 2px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.2rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 3.5rem 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.05rem;
+            }
+            
+            .highlight h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .school-name h1 {
+                font-size: 1.3rem;
+            }
+            
+            .school-name p {
+                font-size: 0.75rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .modules {
+                padding: 0 1rem 3rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .highlight {
+                padding: 3rem 1rem;
+            }
+            
+            .highlight h2 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight p {
+                font-size: 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="school-name">
+                    <h1>SMA Negeri 1 Cluring</h1>
+                    <p>Portal Pembelajaran Sosiologi</p>
+                </div>
+            </div>
+            
+            <nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="navMenu">
+                    <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#modul"><i class="fas fa-book"></i> Modul</a></li>
+                    <li><a href="#capaian"><i class="fas fa-trophy"></i> Capaian</a></li>
+                    <li><a href="#teknologi"><i class="fas fa-microchip"></i> Teknologi</a></li>
+                    <li><a href="#kontak"><i class="fas fa-phone"></i> Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Modul Pembelajaran Sosiologi</h2>
+            <p>Temukan modul pembelajaran terbaru untuk mendukung kegiatan belajar siswa SMA Negeri 1 Cluring</p>
+            <a href="#modul" class="btn">Jelajahi Modul <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Modul Section -->
+    <section class="modules" id="modul">
+        <h2 class="section-title">Modul Pembelajaran</h2>
+        
+        <div class="modules-grid">
+            <!-- Modul 1-4 -->
+            <div class="module-card">
+                <span class="module-badge">Dasar</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 1-4">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 1-4</h3>
+                    <p>Ruang lingkup sosiologi, kelahiran dan perkembangan sosiologi, objek kajian sosiologi, teori fungsionalisme struktural.</p>
+                    <div class="module-objectives">
+                        <h4>Pencapaian Pembelajaran:</h4>
+                        <ul>
+                            <li>Memahami konsep dasar sosiologi</li>
+                            <li>Mengetahui sejarah perkembangan ilmu sosiologi</li>
+                            <li>Mengenal teori fungsionalisme struktural</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_1-4.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Modul 5-8 -->
+            <div class="module-card">
+                <span class="module-badge">Menengah</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 5-8">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 5-8</h3>
+                    <p>Teori Konflik Sosial memiliki relevansi tinggi dengan kehidupan sehari-hari.</p>
+                    <div class="module-objectives">
+                        <h4>Manfaat Pembelajaran:</h4>
+                        <ul>
+                            <li>Memahami penyebab dan dampak konflik sosial</li>
+                            <li>Menumbuhkan empati dan kemampuan melihat konflik secara objektif</li>
+                            <li>Meningkatkan kemampuan analisis permasalahan sosial</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_5-8.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Modul 9-12 -->
+            <div class="module-card">
+                <span class="module-badge">Lanjutan</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 9-12">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 9-12</h3>
+                    <p>Teori Interaksionisme Simbolik dan Paradigma Ganda dalam Sosiologi.</p>
+                    <div class="module-objectives">
+                        <h4>Tujuan Pembelajaran:</h4>
+                        <ul>
+                            <li>Memahami makna simbol sosial dalam interaksi</li>
+                            <li>Membandingkan teori interaksionisme dengan teori lain</li>
+                            <li>Menyadari pentingnya keberagaman makna simbolik</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_9-12.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Modul 13-14 -->
+            <div class="module-card">
+                <span class="module-badge">Teori</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 13-14">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 13-14</h3>
+                    <p>Memahami sifat sosiologi sebagai ilmu dan penerapan paradigma dalam fenomena sosial.</p>
+                    <div class="module-objectives">
+                        <h4>Kompetensi:</h4>
+                        <ul>
+                            <li>Menganalisis ciri-ciri ilmu pengetahuan</li>
+                            <li>Menerapkan paradigma sosiologi dalam studi kasus</li>
+                            <li>Menggabungkan pemahaman konsep dengan keterampilan analisis</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_13-14.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Modul 15-16 -->
+            <div class="module-card">
+                <span class="module-badge">Praktis</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 15-16">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 15-16</h3>
+                    <p>Materi berkaitan dengan kehidupan sehari-hari dan mudah diamati.</p>
+                    <div class="module-objectives">
+                        <h4>Pendekatan:</h4>
+                        <ul>
+                            <li>Metode simulasi dan observasi langsung</li>
+                            <li>Diskusi kelompok dan analisis kasus</li>
+                            <li>Memadukan pengetahuan, keterampilan, dan sikap</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_15-16.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Modul 17-19 -->
+            <div class="module-card">
+                <span class="module-badge">Penelitian</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 17-19">
+                </div>
+                <div class="module-content">
+                    <h3>Modul Ajar 17-19</h3>
+                    <p>Metode Penelitian Sosial untuk pengembangan keterampilan analitis.</p>
+                    <div class="module-objectives">
+                        <h4>Kegiatan:</h4>
+                        <ul>
+                            <li>Memahami metode penelitian kuantitatif dan kualitatif</li>
+                            <li>Praktik penyusunan instrumen penelitian</li>
+                            <li>Observasi sosial dan penyusunan laporan</li>
+                        </ul>
+                    </div>
+                    <a href="MODULAJAR_17-19.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Capaian Pembelajaran -->
+            <div class="module-card">
+                <span class="module-badge">Evaluasi</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Capaian Pembelajaran">
+                </div>
+                <div class="module-content">
+                    <h3>Capaian Pembelajaran</h3>
+                    <p>Standar kompetensi dan indikator pencapaian untuk setiap mata pelajaran sosiologi.</p>
+                    <div class="module-objectives">
+                        <h4>Fokus:</h4>
+                        <ul>
+                            <li>Evaluasi pembelajaran sosiologi</li>
+                            <li>Indikator pencapaian kompetensi</li>
+                            <li>Pengembangan instrumen penilaian</li>
+                        </ul>
+                    </div>
+                    <a href="capaian_pembelajaran.html" class="btn-secondary">Lihat Capaian <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Perkembangan Teknologi -->
+            <div class="module-card">
+                <span class="module-badge">Inovasi</span>
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Perkembangan Teknologi">
+                </div>
+                <div class="module-content">
+                    <h3>Perkembangan Teknologi</h3>
+                    <p>Pembaruan terbaru dalam teknologi pendidikan dan alat pembelajaran digital.</p>
+                    <div class="module-objectives">
+                        <h4>Topik:</h4>
+                        <ul>
+                            <li>Teknologi pendidikan terkini</li>
+                            <li>Alat pembelajaran digital</li>
+                            <li>Trend teknologi 2025-2035</li>
+                        </ul>
+                    </div>
+                    <a href="perkembangan_tekhnologi.html" class="btn-secondary">Pelajari Lebih <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight Section -->
+    <section class="highlight" id="capaian">
+        <div class="highlight-container">
+            <h2>Capaian Pembelajaran Unggulan</h2>
+            <p>Di SMA Negeri 1 Cluring, kami berkomitmen untuk memberikan pendidikan sosiologi terbaik yang mempersiapkan siswa menghadapi tantangan masyarakat modern. Modul pembelajaran kami dirancang untuk mencapai standar kompetensi tinggi dengan pendekatan pembelajaran yang inovatif dan berbasis teknologi.</p>
+            <a href="capaian_pembelajaran.html" class="btn">Lihat Capaian Pembelajaran <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <h3>SMA Negeri 1 Cluring</h3>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Jalan Huzaini - Benculuk - Cluring - Banyuwangi</p>
+                    <p><i class="fas fa-phone"></i> (0333) 1234567</p>
+                    <p><i class="fas fa-envelope"></i> info@sman1cluring.sch.id</p>
+                    <p><i class="fas fa-clock"></i> Senin-Jumat: 07:00 - 15:00 WIB</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Modul Pembelajaran</h4>
+                <ul>
+                    <li><a href="MODULAJAR_1-4.html">Modul Ajar 1-4</a></li>
+                    <li><a href="MODULAJAR_5-8.html">Modul Ajar 5-8</a></li>
+                    <li><a href="MODULAJAR_9-12.html">Modul Ajar 9-12</a></li>
+                    <li><a href="MODULAJAR_13-14.html">Modul Ajar 13-14</a></li>
+                    <li><a href="MODULAJAR_15-16.html">Modul Ajar 15-16</a></li>
+                    <li><a href="MODULAJAR_17-19.html">Modul Ajar 17-19</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Informasi Lainnya</h4>
+                <ul>
+                    <li><a href="capaian_pembelajaran.html">Capaian Pembelajaran</a></li>
+                    <li><a href="perkembangan_tekhnologi.html">Perkembangan Teknologi</a></li>
+                    <li><a href="#">Kalender Akademik</a></li>
+                    <li><a href="#">Berita Sekolah</a></li>
+                    <li><a href="#">Galeri Kegiatan</a></li>
+                    <li><a href="#">Kontak Kami</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 SMA Negeri 1 Cluring. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.module-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

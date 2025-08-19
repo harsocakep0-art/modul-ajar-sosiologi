@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Deep Learning - Pengantar Sosiologi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 5px solid #f8c400;
+        }
+        
+        .school-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .module-title {
+            font-size: 1.8em;
+            margin: 10px 0;
+            color: #ffd700;
+        }
+        
+        .chapter {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            overflow-x: auto;
+            padding: 0 10px;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            color: white;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .tab:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .tab.active {
+            background-color: #f8c400;
+            color: #1a2a6c;
+            position: relative;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+        }
+        
+        .tab-content {
+            padding: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #1a2a6c;
+            border-bottom: 2px solid #f8c400;
+            padding-bottom: 10px;
+            margin: 25px 0 20px;
+        }
+        
+        h3 {
+            color: #b21f1f;
+            margin: 20px 0 15px;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #1a2a6c;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .section {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a2a6c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f8c400;
+        }
+        
+        .footer {
+            background: linear-gradient(90deg, #1a2a6c, #4a6491);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 1.1em;
+            border-top: 3px solid #f8c400;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            font-weight: bold;
+            color: #f8c400;
+            font-size: 1.2em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .module-title {
+                font-size: 1.4em;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📘 PRESERVASI KONTEN 100%: MODUL AJAR DEEP LEARNING</h1>
+            <div class="module-title">MATA PELAJARAN : SOSIOLOGI</div>
+            <div class="chapter">BAB : PENGANTAR SOSIOLOGI</div>
+            <div class="school-info">
+                SMA NEGERI 1 BENCULUK CLURING BANYUWANGI
+            </div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'identitas')">A. IDENTITAS MODUL</button>
+            <button class="tab" onclick="openTab(event, 'informasi')">B. INFORMASI UMUM</button>
+            <button class="tab" onclick="openTab(event, 'desain')">C. DESAIN PEMBELAJARAN</button>
+            <button class="tab" onclick="openTab(event, 'rencana')">D. RENCANA PELAKSANAAN</button>
+            <button class="tab" onclick="openTab(event, 'asesmen')">E. ASESMEN PEMBELAJARAN</button>
+            <button class="tab" onclick="openTab(event, 'tindak')">F. TINDAK LANJUT</button>
+        </div>
+        
+        <!-- Tab A: Identitas Modul -->
+        <div id="identitas" class="tab-content active">
+            <h2>A. IDENTITAS MODUL</h2>
+            
+            <div class="section">
+                <ul>
+                    <li><strong>Nama Sekolah:</strong> SMAN 1 Cluring</li>
+                    <li><strong>Nama Penyusun:</strong> Moh. Suharso, S.Pd</li>
+                    <li><strong>Mata Pelajaran:</strong> Sosiologi</li>
+                    <li><strong>Kelas/Fase/Semester:</strong> X/E/Ganjil</li>
+                    <li><strong>Pertemuan Ke:</strong> 9 S.d 12</li>
+                    <li><strong>Alokasi Waktu:</strong> 12 JP (4 Pertemuan @ 3 JP)</li>
+                    <li><strong>Tahun Pelajaran:</strong> 2025/2026</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Tab B: Informasi Umum -->
+        <div id="informasi" class="tab-content">
+            <h2>B. INFORMASI UMUM</h2>
+            
+            <h3>1. Identifikasi Kesiapan Peserta Didik</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kemampuan Awal</td>
+                        <td>Peserta didik telah memahami dasar-dasar teori konflik dan fungsionalisme dari pembelajaran sebelumnya.</td>
+                    </tr>
+                    <tr>
+                        <td>Minat Belajar</td>
+                        <td>Peserta didik menyukai kegiatan yang berhubungan langsung dengan kehidupan sehari-hari, seperti observasi simbol sosial, diskusi, dan studi kasus sederhana.</td>
+                    </tr>
+                    <tr>
+                        <td>Kebutuhan Belajar</td>
+                        <td>Siswa perlu berlatih berpikir kritis dalam membandingkan teori, serta mengasah keterampilan komunikasi dalam diskusi simbol sosial.</td>
+                    </tr>
+                    <tr>
+                        <td>Kesiapan Belajar</td>
+                        <td>Peserta didik siap untuk belajar dengan metode interaktif seperti observasi mini, diskusi kelompok, pembuatan mind map, dan presentasi sederhana.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. Karakteristik Materi</h3>
+            <div class="section">
+                <p>Materi Teori Interaksionisme Simbolik dan Paradigma Ganda dalam Sosiologi mengajarkan tentang bagaimana individu memberi makna terhadap simbol-simbol dalam interaksi sosial.</p>
+                <p>Materi ini mendorong peserta didik untuk:</p>
+                <ul>
+                    <li>Memahami makna simbol sosial seperti bahasa, gestur, dan budaya dalam kehidupan sehari-hari.</li>
+                    <li>Membandingkan teori interaksionisme dengan teori konflik dan fungsionalisme, sehingga membentuk pemikiran sosiologi yang lebih utuh.</li>
+                    <li>Menyadari pentingnya keberagaman makna simbolik dalam membangun masyarakat yang toleran, inklusif, dan beretika.</li>
+                </ul>
+            </div>
+            
+            <h3>3. Dimensi Profil Lulusan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensi</th>
+                        <th>Relevansi dengan Materi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keimanan dan Ketakwaan</td>
+                        <td>Menghargai makna simbol keagamaan dan etika sosial dalam kehidupan bermasyarakat.</td>
+                    </tr>
+                    <tr>
+                        <td>Kewargaan</td>
+                        <td>Memahami peran individu sebagai warga yang menghormati keberagaman makna dan simbol sosial di masyarakat multikultural.</td>
+                    </tr>
+                    <tr>
+                        <td>Penalaran Kritis</td>
+                        <td>Menganalisis perbedaan perspektif teori interaksionisme dengan teori lain secara logis dan objektif.</td>
+                    </tr>
+                    <tr>
+                        <td>Kreativitas</td>
+                        <td>Mendesain mind map, membuat laporan observasi simbol sosial, dan menyajikan temuan dengan cara menarik dan inovatif.</td>
+                    </tr>
+                    <tr>
+                        <td>Kolaborasi</td>
+                        <td>Bekerja sama dalam kelompok saat melakukan observasi mini, diskusi perbandingan teori, dan debat simbol sosial.</td>
+                    </tr>
+                    <tr>
+                        <td>Mandiri</td>
+                        <td>Melakukan pengamatan dan refleksi pribadi tentang simbol sosial yang ditemui sehari-hari.</td>
+                    </tr>
+                    <tr>
+                        <td>Kesehatan</td>
+                        <td>Mengelola emosi saat berdebat atau berdiskusi tentang perbedaan makna sosial agar tetap menjaga hubungan sosial yang sehat dan harmonis.</td>
+                    </tr>
+                    <tr>
+                        <td>Komunikasi</td>
+                        <td>Menyampaikan hasil pengamatan, ide, dan solusi secara efektif baik secara lisan maupun tulisan melalui diskusi dan presentasi.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab C: Desain Pembelajaran -->
+        <div id="desain" class="tab-content">
+            <h2>C. DESAIN PEMBELAJARAN</h2>
+            
+            <h3>1. Capaian Pembelajaran (CP)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Elemen</th>
+                        <th>Capaian Pembelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pertemuan 9</td>
+                        <td>Pemahaman Konsep</td>
+                        <td>Peserta didik mampu memahami teori interaksionisme simbolik dan membandingkannya dengan teori sosiologi lainnya.</td>
+                    </tr>
+                    <tr>
+                        <td>Pertemuan 10</td>
+                        <td>Keterampilan Proses</td>
+                        <td>Peserta didik mampu mengamati simbol sosial dalam kehidupan sehari-hari dan mengaitkannya dengan teori.</td>
+                    </tr>
+                    <tr>
+                        <td>Pertemuan 11</td>
+                        <td>Keterampilan Proses</td>
+                        <td>Peserta didik mampu mengidentifikasi makna simbol dalam interaksi sosial dan memvisualisasikannya dalam mind map.</td>
+                    </tr>
+                    <tr>
+                        <td>Pertemuan 12</td>
+                        <td>Pemahaman Konsep</td>
+                        <td>Peserta didik mampu menjelaskan paradigma-paradigma dalam sosiologi serta peran paradigma ganda secara konseptual.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. Lintas Disiplin Ilmu</h3>
+            <div class="section">
+                <ul>
+                    <li><strong>Bahasa Indonesia:</strong> Menganalisis teks interaksi sosial dan menyusun laporan observasi.</li>
+                    <li><strong>PPKn:</strong> Mengaitkan simbol sosial dan nilai kebangsaan serta keberagaman budaya.</li>
+                    <li><strong>Seni Budaya:</strong> Mendesain mind map simbol sosial secara kreatif dan estetis.</li>
+                    <li><strong>Teknologi Informasi:</strong> Menggunakan aplikasi digital untuk membuat laporan observasi dan mind mapping (Canva, MindMeister, Google Docs).</li>
+                </ul>
+            </div>
+            
+            <h3>3. Tujuan Pembelajaran</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Topik</th>
+                        <th>Tujuan Pembelajaran</th>
+                        <th>Aktivitas Pembelajaran</th>
+                        <th>Penilaian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>Teori Interaksionisme Simbolik (1)</td>
+                        <td>Siswa dapat membandingkan teori interaksionisme dengan teori konflik dan fungsionalisme secara tertulis dalam 1 jam pelajaran.</td>
+                        <td>Studi kasus, diskusi kelompok, tanya jawab</td>
+                        <td>Tabel perbandingan teori</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Teori Interaksionisme Simbolik (2)</td>
+                        <td>Siswa dapat mengamati minimal 1 simbol sosial di lingkungan sekitar dan membuat laporan observasi dalam waktu 2 JP.</td>
+                        <td>Observasi mini, sharing cerita simbol, menulis laporan sederhana</td>
+                        <td>Laporan mini observasi simbol</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Teori Interaksionisme Simbolik (3)</td>
+                        <td>Siswa mampu membuat 1 mind map yang memvisualisasikan simbol dan makna interaksi sosial dalam 40 menit.</td>
+                        <td>Diskusi kelompok, tanya jawab, pembuatan mind map simbol</td>
+                        <td>Mind map simbol sosial</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Paradigma Ganda dalam Sosiologi</td>
+                        <td>Siswa dapat menyebutkan dan menjelaskan minimal 3 paradigma dalam sosiologi serta memberi contoh aplikasinya dalam kehidupan sosial.</td>
+                        <td>Ceramah interaktif, klasifikasi paradigma, pengisian diagram paradigma</td>
+                        <td>Diagram paradigma sosiologi</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4. Topik Pembelajaran Kontekstual</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Topik Kontekstual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>Membandingkan teori sosiologi dengan mengangkat isu sehari-hari tentang perbedaan makna simbol di masyarakat sekitar.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Mengamati penggunaan simbol sosial seperti salam, gestur, atau kode perilaku di lingkungan sekitar.</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Mengidentifikasi simbol-simbol dalam interaksi sosial di sekolah, keluarga, atau media sosial.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Menyusun diagram perbandingan paradigma dalam sosiologi dengan contoh peristiwa sosial yang sedang terjadi.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>5. Kerangka Pembelajaran</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Pertemuan 9</th>
+                        <th>Pertemuan 10</th>
+                        <th>Pertemuan 11</th>
+                        <th>Pertemuan 12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Model</td>
+                        <td>Problem Based Learning (PBL)</td>
+                        <td>Project Based Learning (PjBL)</td>
+                        <td>Discovery Learning</td>
+                        <td>Ceramah Interaktif + Diskusi Panel</td>
+                    </tr>
+                    <tr>
+                        <td>Strategi</td>
+                        <td>Diskusi perbandingan teori, studi kasus. Peserta didik menggunakan handphone untuk mencari sumber referensi dan mengunggah catatan diskusi ke Google Sites kelas.</td>
+                        <td>Observasi lapangan mini, sharing pengalaman. Hasil observasi dicatat langsung di HP dan diunggah ke Google Sites agar bisa diakses bersama.</td>
+                        <td>Diskusi simbol sosial, membuat mind map. Mind map dibuat menggunakan aplikasi di HP (Canva/MindMeister), lalu diunggah ke Google Sites sebagai dokumentasi digital kelas.</td>
+                        <td>Ceramah, klasifikasi paradigma, latihan soal diagram. Diagram dibuat di HP menggunakan aplikasi seperti Lucidchart atau PPT interaktif, lalu disimpan di Google Sites kelas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab D: Rencana Pelaksanaan Pembelajaran -->
+        <div id="rencana" class="tab-content">
+            <h2>D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <h3>Pertemuan 9: Teori Interaksionisme Simbolik (1)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pembelajaran dengan salam dan doa.</li>
+                                <li>Mindful Learning: Guru mengaitkan topik dengan pengalaman peserta didik mengenai simbol dalam kehidupan sehari-hari.</li>
+                                <li>Meaningful Learning: Guru menjelaskan pentingnya memahami berbagai perspektif dalam teori sosiologi.</li>
+                                <li>Joyful Learning: Guru memancing antusiasme dengan studi kasus ringan tentang salah paham makna simbol.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <ul>
+                                <li>Understanding: Guru menjelaskan teori Interaksionisme Simbolik dan membandingkan dengan teori Konflik dan Fungsionalisme.</li>
+                                <li>Applying: Siswa mendiskusikan perbandingan ketiga teori melalui studi kasus sederhana.</li>
+                                <li>Reflecting: Siswa menyimpulkan keunggulan dan kelemahan tiap teori dalam memahami realitas sosial.</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Siswa dan guru menyampaikan umpan balik terhadap proses diskusi.</li>
+                                <li>Siswa menyimpulkan pelajaran hari ini.</li>
+                                <li>Refleksi: "Teori mana yang paling menggambarkan kehidupan sehari-hari saya?"</li>
+                                <li>Guru menutup dengan salam dan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Pertemuan 10: Teori Interaksionisme Simbolik (2)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pelajaran dengan salam dan doa.</li>
+                                <li>Mindful Learning: Guru mengarahkan perhatian siswa pada makna simbol yang digunakan dalam lingkungan sosial.</li>
+                                <li>Meaningful Learning: Guru menghubungkan simbol sosial yang diamati dengan pengalaman personal siswa.</li>
+                                <li>Joyful Learning: Guru menyampaikan tujuan observasi simbol dengan cerita menarik dari pengalaman nyata.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <ul>
+                                <li>Understanding: Guru menjelaskan kembali prinsip dasar teori interaksionisme simbolik.</li>
+                                <li>Applying: Siswa melakukan observasi mini secara individu atau berpasangan di lingkungan sekitar (kelas, sekolah, rumah) untuk mengamati simbol sosial (misal: gaya berpakaian, bahasa tubuh, ekspresi).</li>
+                                <li>Reflecting: Siswa menceritakan pengalaman pengamatan dan menuliskan laporan sederhana.</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Guru memandu siswa memberi umpan balik terhadap pengalaman observasi.</li>
+                                <li>Siswa menyampaikan refleksi secara lisan atau tertulis: "Apa simbol sosial yang sering saya temui dan bagaimana saya memaknainya?"</li>
+                                <li>Guru menyimpulkan pembelajaran dan menutup dengan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Pertemuan 11: Teori Interaksionisme Simbolik (3)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pembelajaran dengan salam dan doa.</li>
+                                <li>Mindful Learning: Guru meminta siswa mengingat interaksi sosial sehari-hari yang mengandung simbol.</li>
+                                <li>Meaningful Learning: Guru menjelaskan manfaat memahami simbol dalam menjaga hubungan sosial.</li>
+                                <li>Joyful Learning: Guru memberikan ice breaking berupa game tentang ekspresi wajah dan maknanya.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <ul>
+                                <li>Understanding: Guru membimbing siswa memahami kembali teori Interaksionisme Simbolik secara singkat dan memberi contoh konkret di sekolah dan masyarakat.</li>
+                                <li>Applying: Siswa secara berkelompok membuat mind map tentang simbol sosial dan maknanya dalam kehidupan nyata (boleh manual/digital).</li>
+                                <li>Reflecting: Setiap kelompok mempresentasikan mind map dan menjelaskan makna simbol yang mereka temukan. Kelompok lain memberikan pertanyaan atau tanggapan.</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Siswa memberikan umpan balik tentang proses pembuatan mind map dan diskusi.</li>
+                                <li>Guru bersama siswa menyimpulkan materi hari ini.</li>
+                                <li>Refleksi: "Apa makna simbol sosial yang menurut saya paling unik dan kenapa?"</li>
+                                <li>Guru menutup pembelajaran dengan salam dan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Pertemuan 12: Paradigma Ganda dalam Sosiologi</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>
+                            <ul>
+                                <li>Guru membuka pembelajaran dengan salam dan doa.</li>
+                                <li>Mindful Learning: Guru mengajak siswa merenungkan pentingnya memahami berbagai cara pandang dalam sosiologi.</li>
+                                <li>Meaningful Learning: Guru menjelaskan bahwa memahami banyak paradigma akan membantu melihat masalah sosial secara utuh.</li>
+                                <li>Joyful Learning: Guru menyampaikan kisah nyata tentang perbedaan sudut pandang terhadap peristiwa sosial.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>
+                            <ul>
+                                <li>Understanding: Guru menjelaskan tentang Paradigma Ganda dalam Sosiologi (konflik, fungsional, interaksionisme, paradigma ganda).</li>
+                                <li>Applying: Siswa membuat diagram perbandingan paradigma beserta contoh peristiwa yang relevan dengan tiap paradigma.</li>
+                                <li>Reflecting: Siswa mendiskusikan contoh peristiwa yang bisa dilihat dari berbagai sudut pandang. Guru memandu diskusi.</li>
+                            </ul>
+                        </td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>
+                            <ul>
+                                <li>Siswa memberikan umpan balik tentang proses belajar.</li>
+                                <li>Guru dan siswa menyimpulkan materi hari ini.</li>
+                                <li>Refleksi: "Mengapa penting melihat masalah sosial dari banyak perspektif?"</li>
+                                <li>Guru menutup pembelajaran dengan salam dan doa.</li>
+                            </ul>
+                        </td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab E: Asesmen Pembelajaran -->
+        <div id="asesmen" class="tab-content">
+            <h2>E. ASESMEN PEMBELAJARAN</h2>
+            
+            <h3>1. Asesmen Awal (Diagnostik)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>Kuis perbandingan teori (Pilihan Ganda & Isian)</td>
+                        <td>Mengetahui pemahaman awal siswa tentang teori interaksionisme, konflik, dan fungsionalisme.</td>
+                        <td>Google Form, Quizizz, atau LKS perbandingan teori</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Tanya jawab & pertanyaan pemantik</td>
+                        <td>Mengidentifikasi pemahaman awal siswa tentang simbol sosial di lingkungan sekitar.</td>
+                        <td>Pertanyaan: "Simbol apa yang sering Anda temui di lingkungan sekolah?"</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Review pengalaman simbol sosial</td>
+                        <td>Mengetahui pengalaman siswa tentang penggunaan simbol dalam interaksi sehari-hari.</td>
+                        <td>Pertanyaan lisan/tertulis: "Pernahkah Anda salah paham karena simbol? Ceritakan!"</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Diskusi ringan & brainstorming</td>
+                        <td>Mengukur pengetahuan awal siswa tentang paradigma dalam sosiologi.</td>
+                        <td>Pertanyaan: "Apa yang Anda ketahui tentang teori-teori sosial yang berbeda?"</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2. Asesmen Proses (Formatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>Tabel perbandingan teori (produk diskusi kelompok)</td>
+                        <td>Mengukur kemampuan membandingkan teori secara kritis.</td>
+                        <td>Lembar kerja tabel perbandingan, catatan observasi diskusi</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Laporan observasi mini</td>
+                        <td>Mengamati dan mencatat simbol sosial dalam kehidupan sehari-hari.</td>
+                        <td>Form observasi, dokumentasi foto, catatan lapangan</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Produk mind map simbol sosial</td>
+                        <td>Mengolah data simbol menjadi visualisasi hubungan makna.</td>
+                        <td>Kertas karton/manual atau aplikasi Canva/MindMeister, rubrik peta pikiran</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Diagram perbandingan paradigma</td>
+                        <td>Mengelompokkan paradigma sosiologi dan contohnya secara visual.</td>
+                        <td>Lembar kerja diagram paradigma, catatan refleksi</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>3. Asesmen Akhir (Sumatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Sumatif</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen Rubrik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>Kuis & tabel perbandingan teori</td>
+                        <td>Menilai kemampuan membedakan teori interaksionisme dengan teori lain.</td>
+                        <td>Rubrik perbandingan teori: ketepatan isi, argumentasi, kerapian</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Laporan observasi simbol sosial</td>
+                        <td>Menilai keterampilan mengamati dan mendeskripsikan simbol sosial di lingkungan sekitar.</td>
+                        <td>Rubrik laporan: kejelasan simbol, ketepatan makna, orisinalitas, kerapian</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Mind map simbol sosial</td>
+                        <td>Menilai kemampuan memetakan simbol dan maknanya secara kreatif.</td>
+                        <td>Rubrik mind map: isi, sistematika, kreativitas, kolaborasi</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Diagram paradigma ganda</td>
+                        <td>Menilai pemahaman tentang paradigma sosiologi secara visual dan aplikatif.</td>
+                        <td>Rubrik diagram: kelengkapan, analisis contoh, kerapian, kreativitas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tab F: Rencana Tindak Lanjut -->
+        <div id="tindak" class="tab-content">
+            <h2>F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Tindak Lanjut Remedial</th>
+                        <th>Tindak Lanjut Pengayaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <ul>
+                                <li>Siswa yang belum memahami perbandingan teori diberikan pendampingan dengan bimbingan khusus secara berkelompok kecil.</li>
+                                <li>Mengisi kembali tabel perbandingan teori dengan bantuan guru.</li>
+                                <li>Menonton video pembelajaran terkait teori interaksionisme, konflik, dan fungsionalisme.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Siswa diminta membuat esai singkat tentang contoh perbandingan teori di masyarakat.</li>
+                                <li>Siswa membuat video pendek yang menjelaskan perbedaan ketiga teori tersebut secara kreatif.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <ul>
+                                <li>Siswa yang kesulitan mengamati simbol sosial diminta mengulangi observasi dengan panduan pertanyaan lebih sederhana.</li>
+                                <li>Guru memberikan contoh simbol dari kehidupan sehari-hari untuk dianalisis bersama.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Siswa membuat laporan observasi lanjutan dengan objek simbol di media sosial atau lingkungan yang lebih luas.</li>
+                                <li>Membuat infografis tentang makna simbol dalam kehidupan masyarakat multikultural.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>
+                            <ul>
+                                <li>Siswa yang kesulitan membuat mind map diberikan template atau kerangka dasar mind map.</li>
+                                <li>Guru membimbing pengisian langkah demi langkah melalui diskusi kelompok kecil.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Siswa membuat mind map lanjutan dengan menambahkan dimensi solusi atas konflik makna simbol.</li>
+                                <li>Membuat peta interaktif menggunakan aplikasi digital (MindMeister, Canva).</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>
+                            <ul>
+                                <li>Siswa yang belum memahami paradigma diberi bimbingan klasifikasi sederhana dengan contoh-contoh nyata.</li>
+                                <li>Melengkapi diagram paradigma dengan pendampingan guru.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Siswa membuat video presentasi perbandingan paradigma dengan contoh aktual (berita atau peristiwa lokal).</li>
+                                <li>Siswa membuat artikel reflektif tentang pentingnya memahami berbagai paradigma dalam kehidupan sosial.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-content">
+                <h3>MODUL AJAR DEEP LEARNING SOSIOLOGI</h3>
+                <p>© 2025 SMA NEGERI 1 BENCULUK CLURING BANYUWANGI</p>
+                <p>Tahun Pelajaran 2025/2026 | Semester Ganjil</p>
+                <div class="logo">PRESERVASI KONTEN 100%</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tabs
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>

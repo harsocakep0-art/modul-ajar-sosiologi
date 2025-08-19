@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Deep Learning - Sosiologi | SMAN 1 Cluring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #f9ab00;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,100 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 3rem;
+            margin-right: 15px;
+            color: var(--accent);
+        }
+        
+        .school-info {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .module-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subject-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 10px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            border-radius: 30px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        /* Content Styling */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: rgba(26, 115, 232, 0.05);
+        }
+        
+        .highlight {
+            background: rgba(249, 171, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            margin: 15px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .badge-primary {
+            background: rgba(26, 115, 232, 0.15);
+            color: var(--primary);
+        }
+        
+        .badge-secondary {
+            background: rgba(52, 168, 83, 0.15);
+            color: var(--secondary);
+        }
+        
+        .badge-accent {
+            background: rgba(249, 171, 0, 0.15);
+            color: #b37800;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px 20px 0 0;
+            margin-top: 30px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .school-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            .subject-info {
+                font-size: 0.9rem;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            th, td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tabs {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                border-radius: 10px;
+                margin: 2px 0;
+            }
+            
+            .module-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-book-open logo-icon"></i>
+                <h1 class="module-title">📘 MODUL AJAR DEEP LEARNING</h1>
+            </div>
+            <div class="subject-info">
+                <p>MATA PELAJARAN : SOSIOLOGI</p>
+                <p>BAB : INTERAKSI SOSIAL DAN KERAGAMAN IDENTITAS SOSIAL</p>
+            </div>
+            <p class="school-info">SMAN 1 CLURING - BANYUWANGI | TAHUN PELAJARAN 2025/2026</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="identitas">Identitas Modul</button>
+            <button class="tab-btn" data-tab="informasi">Informasi Umum</button>
+            <button class="tab-btn" data-tab="desain">Desain Pembelajaran</button>
+            <button class="tab-btn" data-tab="rencana">Rencana Pelaksanaan</button>
+            <button class="tab-btn" data-tab="asesmen">Asesmen Pembelajaran</button>
+            <button class="tab-btn" data-tab="tindak">Tindak Lanjut</button>
+        </div>
+
+        <!-- Tab 1: Identitas Modul -->
+        <div id="identitas" class="tab-content active">
+            <h2 class="section-title"><i class="fas fa-id-card"></i> IDENTITAS MODUL</h2>
+            <div class="info-grid">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-school"></i> Informasi Sekolah</h3>
+                    <p><strong>Nama Sekolah:</strong> SMAN 1 Cluring</p>
+                    <p><strong>Nama Penyusun:</strong> Moh. Suharso, S.Pd</p>
+                    <p><strong>Mata Pelajaran:</strong> Sosiologi</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Jadwal Pembelajaran</h3>
+                    <p><strong>Kelas/Fase/Semester:</strong> X/E/Ganjil</p>
+                    <p><strong>Pertemuan Ke:</strong> 15 S.d 16</p>
+                    <p><strong>Alokasi Waktu:</strong> 6 JP (2 Pertemuan @ 3 JP)</p>
+                    <p><strong>Tahun Pelajaran:</strong> 2025/2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Informasi Umum -->
+        <div id="informasi" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> INFORMASI UMUM</h2>
+            
+            <div class="info-grid">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-graduate"></i> Identifikasi Kesiapan Peserta Didik</h3>
+                    <ul>
+                        <li>Peserta didik telah mempelajari materi tentang interaksi sosial, tindakan sosial, dan proses sosial dasar di pertemuan sebelumnya.</li>
+                        <li>Memiliki pengalaman nyata berinteraksi di lingkungan sekolah dan masyarakat.</li>
+                        <li>Peserta didik mampu menggunakan teknologi sederhana untuk mendokumentasikan hasil pengamatan (misalnya melalui HP untuk foto atau video observasi).</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Karakteristik Materi</h3>
+                    <ul>
+                        <li>Materi berkaitan dengan kehidupan sehari-hari, mudah diamati dan relevan dengan konteks sosial peserta didik.</li>
+                        <li>Dapat dikembangkan melalui metode simulasi, observasi langsung, dan diskusi.</li>
+                        <li>Memadukan aspek pengetahuan, keterampilan proses, dan pembentukan sikap.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 class="section-title"><i class="fas fa-chart-line"></i> Dimensi Profil Lulusan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensi</th>
+                        <th>Relevansi dengan Materi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keimanan dan Ketakwaan</td>
+                        <td>Menghargai sesama tanpa membedakan latar belakang sosial</td>
+                    </tr>
+                    <tr>
+                        <td>Kewargaan Global dan Berkebinekaan</td>
+                        <td>Membangun sikap toleransi terhadap perbedaan identitas sosial</td>
+                    </tr>
+                    <tr>
+                        <td>Penalaran Kritis</td>
+                        <td>Menganalisis tindakan sosial dan keragaman identitas di lingkungan sekitar</td>
+                    </tr>
+                    <tr>
+                        <td>Kreativitas</td>
+                        <td>Menciptakan simulasi peran atau karya reflektif tentang tindakan sosial</td>
+                    </tr>
+                    <tr>
+                        <td>Kolaborasi</td>
+                        <td>Diskusi dan kerja kelompok dalam simulasi dan laporan observasi</td>
+                    </tr>
+                    <tr>
+                        <td>Mandiri</td>
+                        <td>Melaksanakan pengamatan dan pengumpulan data secara mandiri</td>
+                    </tr>
+                    <tr>
+                        <td>Kesehatan (Fisik & Mental)</td>
+                        <td>Berinteraksi secara positif untuk menjaga hubungan sosial yang sehat</td>
+                    </tr>
+                    <tr>
+                        <td>Komunikasi</td>
+                        <td>Mengkomunikasikan hasil observasi dan simulasi secara lisan maupun tulisan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 3: Desain Pembelajaran -->
+        <div id="desain" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-pencil-ruler"></i> DESAIN PEMBELAJARAN</h2>
+            
+            <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran (CP)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Elemen</th>
+                        <th>Capaian Pembelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>Tindakan Sosial & Interaksi Sosial</td>
+                        <td>Peserta didik mampu mengidentifikasi berbagai tindakan sosial dan interaksi sosial dalam kehidupan sehari-hari melalui simulasi peran.</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Keragaman Identitas Sosial</td>
+                        <td>Peserta didik mampu menganalisis keragaman identitas sosial di lingkungan sekitar melalui observasi langsung dan membuat laporan hasil pengamatan.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3><i class="fas fa-link"></i> Lintas Disiplin Ilmu</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mata Pelajaran</th>
+                        <th>Keterkaitan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bahasa Indonesia</td>
+                        <td>Peserta didik melatih kemampuan berkomunikasi lisan dan tulisan melalui laporan observasi dan diskusi kelompok.</td>
+                    </tr>
+                    <tr>
+                        <td>Pendidikan Pancasila</td>
+                        <td>Memahami nilai toleransi, gotong royong, dan menghargai perbedaan dalam kehidupan bermasyarakat.</td>
+                    </tr>
+                    <tr>
+                        <td>Informatika</td>
+                        <td>Menggunakan teknologi sederhana (HP/gadget) untuk dokumentasi foto atau video hasil simulasi dan observasi.</td>
+                    </tr>
+                    <tr>
+                        <td>Seni Budaya</td>
+                        <td>Menampilkan kreativitas dalam simulasi peran dengan ekspresi, gerak, dan alur cerita yang menarik.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3><i class="fas fa-crosshairs"></i> Tujuan Pembelajaran</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Topik</th>
+                        <th>Tujuan Pembelajaran</th>
+                        <th>Aktivitas Pembelajaran</th>
+                        <th>Penilaian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>Tindakan Sosial dan Interaksi Sosial</td>
+                        <td>Peserta didik mampu mengidentifikasi berbagai tindakan sosial dan mengklasifikasikan jenis tindakan sosial melalui simulasi peran.</td>
+                        <td>
+                            <ul>
+                                <li>Diskusi tentang pengertian tindakan sosial</li>
+                                <li>Membaca studi kasus atau cerita tindakan sosial</li>
+                                <li>Simulasi peran tentang tindakan sosial dalam kehidupan sehari-hari</li>
+                                <li>Diskusi reflektif tentang dampak tindakan sosial</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Lembar Kerja Peserta Didik (LKS)</li>
+                                <li>Observasi proses simulasi peran</li>
+                                <li>Refleksi lisan/tertulis</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Keragaman Identitas Sosial</td>
+                        <td>Peserta didik mampu mengamati dan menganalisis keragaman identitas sosial di lingkungan sekitar serta menyusun laporan hasil observasi.</td>
+                        <td>
+                            <ul>
+                                <li>Observasi langsung tentang keragaman identitas sosial (agama, suku, budaya, pekerjaan)</li>
+                                <li>Mencatat hasil pengamatan dalam tabel</li>
+                                <li>Diskusi kelompok tentang hasil pengamatan</li>
+                                <li>Presentasi laporan observasi</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Laporan observasi tertulis</li>
+                                <li>Presentasi kelompok</li>
+                                <li>Diskusi kelas (formatif)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 4: Rencana Pelaksanaan Pembelajaran -->
+        <div id="rencana" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-calendar-check"></i> RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 15: Tindakan Sosial dan Interaksi Sosial</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahapan</th>
+                        <th>Deskripsi Kegiatan</th>
+                        <th>Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pendahuluan</td>
+                        <td>
+                            <ul>
+                                <li>Guru memulai pembelajaran dengan salam dan doa</li>
+                                <li>Guru mengaitkan materi dengan pengalaman sehari-hari peserta didik (mindful)</li>
+                                <li>Guru menyampaikan tujuan pembelajaran dan manfaat materi dalam kehidupan nyata (meaningful)</li>
+                                <li>Guru menciptakan suasana belajar yang kondusif dan menyenangkan (joyful)</li>
+                            </ul>
+                        </td>
+                        <td>10 menit</td>
+                    </tr>
+                    <tr>
+                        <td>Inti</td>
+                        <td>
+                            <ul>
+                                <li><strong>Understanding:</strong> Guru menjelaskan konsep tindakan sosial dan jenis-jenisnya</li>
+                                <li><strong>Applying:</strong> Siswa diberikan kasus/cerita tindakan sosial kemudian melakukan simulasi peran sesuai cerita</li>
+                                <li><strong>Reflecting:</strong> Siswa mendiskusikan pengalaman dari simulasi, mengklasifikasikan jenis tindakan sosial, dan menghubungkannya dengan kehidupan sehari-hari</li>
+                            </ul>
+                        </td>
+                        <td>70 menit</td>
+                    </tr>
+                    <tr>
+                        <td>Penutup</td>
+                        <td>
+                            <ul>
+                                <li>Guru memberikan umpan balik terhadap proses belajar</li>
+                                <li>Siswa bersama guru menyimpulkan pembelajaran hari ini</li>
+                                <li>Refleksi: Peserta didik menuliskan satu tindakan sosial yang akan mereka lakukan esok hari</li>
+                                <li>Guru menutup dengan salam dan doa</li>
+                            </ul>
+                        </td>
+                        <td>10 menit</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 16: Keragaman Identitas Sosial</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahapan</th>
+                        <th>Deskripsi Kegiatan</th>
+                        <th>Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pendahuluan</td>
+                        <td>
+                            <ul>
+                                <li>Guru memulai pembelajaran dengan salam dan doa</li>
+                                <li>Guru mengajak siswa mengingat pengalaman melihat keberagaman di sekitar mereka (mindful)</li>
+                                <li>Guru menyampaikan manfaat memahami keragaman identitas sosial (meaningful)</li>
+                                <li>Guru menciptakan suasana belajar yang kondusif dan menyenangkan (joyful)</li>
+                            </ul>
+                        </td>
+                        <td>10 menit</td>
+                    </tr>
+                    <tr>
+                        <td>Inti</td>
+                        <td>
+                            <ul>
+                                <li><strong>Understanding:</strong> Guru menjelaskan konsep keragaman identitas sosial</li>
+                                <li><strong>Applying:</strong> Siswa melakukan observasi lingkungan (di sekolah atau sekitar rumah) untuk mengidentifikasi keragaman identitas sosial</li>
+                                <li><strong>Reflecting:</strong> Siswa membuat laporan hasil observasi dan mempresentasikan hasilnya, kemudian berdiskusi tentang pentingnya toleransi dan harmoni sosial</li>
+                            </ul>
+                        </td>
+                        <td>70 menit</td>
+                    </tr>
+                    <tr>
+                        <td>Penutup</td>
+                        <td>
+                            <ul>
+                                <li>Guru memberikan umpan balik terhadap laporan dan presentasi siswa</li>
+                                <li>Bersama siswa membuat kesimpulan tentang pentingnya menghargai perbedaan</li>
+                                <li>Refleksi: Siswa menuliskan satu tindakan nyata untuk menghargai keragaman di sekitar mereka</li>
+                                <li>Guru menutup dengan salam dan doa</li>
+                            </ul>
+                        </td>
+                        <td>10 menit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 5: Asesmen Pembelajaran -->
+        <div id="asesmen" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> ASESMEN PEMBELAJARAN</h2>
+            
+            <h3><i class="fas fa-search"></i> Asesmen Awal (Diagnostik)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>Tanya jawab awal (kontekstual)</td>
+                        <td>Mengidentifikasi pemahaman awal peserta didik tentang tindakan sosial dan interaksi sosial</td>
+                        <td>
+                            Pertanyaan lisan: 
+                            <ul>
+                                <li>Pernahkah kalian membantu orang lain?</li>
+                                <li>Mengapa kita perlu berinteraksi dengan orang lain?</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Diskusi awal dan eksplorasi pengalaman</td>
+                        <td>Menggali pengetahuan awal peserta didik tentang keberagaman identitas sosial di lingkungan sekitar</td>
+                        <td>
+                            Pertanyaan pemantik:
+                            <ul>
+                                <li>Apa saja perbedaan yang kalian temui di lingkungan sekolah atau rumah?</li>
+                                <li>Bagaimana sikap kalian terhadap perbedaan tersebut?</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3><i class="fas fa-tasks"></i> Asesmen Proses (Formatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>Observasi saat simulasi peran dan diskusi</td>
+                        <td>Menilai partisipasi aktif, kemampuan mengklasifikasi tindakan sosial, dan sikap kerja sama</td>
+                        <td>Lembar observasi dan catatan guru tentang:
+                            <ul>
+                                <li>Peran dalam simulasi</li>
+                                <li>Keterlibatan diskusi</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Observasi saat kegiatan pengamatan dan diskusi kelompok</td>
+                        <td>Menilai kemampuan mengamati, mencatat data sosial, serta sikap toleransi dalam berdiskusi</td>
+                        <td>Lembar observasi kelompok dan catatan diskusi</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3><i class="fas fa-chart-bar"></i> Asesmen Akhir (Sumatif)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Sumatif</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen & Rubrik</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>Lembar Kerja (LKS) Simulasi Peran</td>
+                        <td>Mengukur kemampuan mengidentifikasi dan mengklasifikasikan tindakan sosial secara tertulis dan praktik</td>
+                        <td>Rubrik Penilaian:
+                            <ul>
+                                <li>Kesesuaian simulasi dengan jenis tindakan sosial (30%)</li>
+                                <li>Keaktifan dan kerja sama kelompok (20%)</li>
+                                <li>Penulisan refleksi tindakan sosial (30%)</li>
+                                <li>Presentasi hasil simulasi (20%)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Laporan Observasi Keragaman Sosial</td>
+                        <td>Mengukur kemampuan menganalisis keragaman identitas sosial di lingkungan sekitar</td>
+                        <td>Rubrik Penilaian:
+                            <ul>
+                                <li>Kelengkapan data observasi (40%)</li>
+                                <li>Analisis dan penulisan laporan (30%)</li>
+                                <li>Presentasi hasil observasi (20%)</li>
+                                <li>Sikap dan kerja sama (10%)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 6: Rencana Tindak Lanjut -->
+        <div id="tindak" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-forward"></i> RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Tindak Lanjut Remedial</th>
+                        <th>Tindak Lanjut Pengayaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15</td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang belum memahami tindakan sosial diberikan bimbingan khusus dengan contoh-contoh lebih sederhana</li>
+                                <li>Mengulang simulasi peran dengan bimbingan lebih intensif secara berkelompok kecil</li>
+                                <li>Diberikan LKS tambahan tentang klasifikasi tindakan sosial dengan soal pilihan ganda dan isian</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang sudah menguasai materi diberikan tugas membuat video atau podcast singkat tentang tindakan sosial di lingkungan mereka</li>
+                                <li>Membuat refleksi tulisan tentang peran tindakan sosial dalam kehidupan sehari-hari dan dikumpulkan melalui Google Classroom</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik yang belum tuntas diberikan pendampingan dalam menyusun kembali laporan observasi secara lebih sederhana</li>
+                                <li>Guru memberikan contoh tabel observasi untuk diisi ulang secara bertahap dengan bimbingan</li>
+                                <li>Diskusi tambahan tentang sikap toleransi dan keragaman sosial</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Peserta didik membuat proyek mini berupa peta keragaman sosial di lingkungan sekolah atau masyarakat sekitar dengan memanfaatkan Canva/Mindmap digital</li>
+                                <li>Membuat artikel singkat tentang pentingnya menjaga harmoni dalam masyarakat majemuk, diunggah ke blog sekolah atau media sosial kelas</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="school-name">SMA NEGERI 1 BENCULUK CLURING BANYUWANGI</div>
+            <p>Jl. Pendidikan No. 123, Cluring, Banyuwangi, Jawa Timur</p>
+            <p>Email: sman1cluring@sch.id | Telp: (0333) 123456</p>
+            <p class="copyright">© 2025 - Hak Cipta Dilindungi | Preservasi Konten 100%</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Add animation to cards when they come into view
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.5s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

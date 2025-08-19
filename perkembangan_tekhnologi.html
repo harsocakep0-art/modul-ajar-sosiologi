@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infografis Timeline Perkembangan Teknologi 2025–2035 (Revisi)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #121212, #1a1a2e);
+      color: #f0f0f0;
+      min-height: 100vh;
+      padding: 20px;
+      transition: background 0.5s, color 0.5s;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 30px 0;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: #bbb;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .revision-note {
+      background: rgba(255, 215, 0, 0.15);
+      border-left: 4px solid #ffd700;
+      padding: 15px;
+      margin: 25px auto;
+      max-width: 800px;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .revision-note h3 {
+      color: #ffd700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .toggle-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 40px;
+    }
+    
+    .toggle-mode {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #2e7d32, #388e3c);
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+    }
+    
+    .toggle-mode:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.6);
+    }
+    
+    .timeline-container {
+      position: relative;
+      padding: 50px 0;
+    }
+    
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 50px 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #4a00e0, #8e2de2);
+      z-index: 1;
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(142, 45, 226, 0.5);
+    }
+    
+    .milestone {
+      text-align: center;
+      position: relative;
+      flex: 1;
+      z-index: 2;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    
+    .milestone:hover {
+      transform: translateY(-10px);
+    }
+    
+    .milestone .icon-container {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 3px solid #4a00e0;
+      transition: all 0.3s ease;
+    }
+    
+    .milestone:hover .icon-container {
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(142, 45, 226, 0.8);
+    }
+    
+    .milestone .icon {
+      font-size: 36px;
+      color: #fff;
+    }
+    
+    .year {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 1.2rem;
+      color: #00f2fe;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    
+    .label {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .description {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 8px;
+      padding: 0 10px;
+      max-width: 200px;
+      margin: 10px auto 0;
+      display: none;
+    }
+    
+    .milestone:hover .description {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .change-indicator {
+      background: rgba(255, 215, 0, 0.2);
+      color: #ffd700;
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-top: 5px;
+      display: inline-block;
+      font-weight: 600;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      color: #aaa;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Light mode styles */
+    body.light-mode {
+      background: linear-gradient(135deg, #f4f6f9, #e6e9ff);
+      color: #333;
+    }
+    
+    body.light-mode .timeline::before {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+    }
+    
+    body.light-mode .milestone .icon-container {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      border: 3px solid #6a11cb;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    body.light-mode .milestone:hover .icon-container {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      box-shadow: 0 0 25px rgba(106, 17, 203, 0.4);
+    }
+    
+    body.light-mode .year {
+      color: #2575fc;
+      background: rgba(255, 255, 255, 0.7);
+    }
+    
+    body.light-mode .label {
+      color: #333;
+    }
+    
+    body.light-mode .description {
+      color: #555;
+    }
+    
+    body.light-mode .revision-note {
+      background: rgba(255, 215, 0, 0.1);
+      border-left: 4px solid #ffd700;
+    }
+    
+    body.light-mode .toggle-mode {
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      box-shadow: 0 4px 15px rgba(37, 117, 252, 0.3);
+    }
+    
+    body.light-mode .toggle-mode:hover {
+      box-shadow: 0 6px 20px rgba(37, 117, 252, 0.5);
+    }
+    
+    @media (max-width: 900px) {
+      .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .timeline::before {
+        top: 0;
+        left: 40px;
+        width: 8px;
+        height: 100%;
+      }
+      
+      .milestone {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        width: 100%;
+        text-align: left;
+      }
+      
+      .milestone .icon-container {
+        margin: 0 20px 0 0;
+        min-width: 80px;
+      }
+      
+      .milestone-content {
+        flex: 1;
+      }
+      
+      .year, .label, .description {
+        text-align: left;
+        margin-left: 0;
+        max-width: 100%;
+      }
+      
+      .description {
+        display: block;
+        padding: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-project-diagram"></i> Infografis Timeline Perkembangan Teknologi 2025–2035</h1>
+      <p class="subtitle">Prediksi perkembangan teknologi utama dengan penyesuaian berdasarkan analisis realistik</p>
+    </header>
+    
+    <div class="revision-note">
+      <h3><i class="fas fa-lightbulb"></i> Penyesuaian Berdasarkan Analisis</h3>
+      <p>Timeline ini telah disesuaikan untuk mencerminkan prediksi yang lebih realistis berdasarkan perkembangan teknologi terkini. Perubahan utama termasuk penyesuaian timeline mobil otonom, perubahan koloni Mars menjadi misi berawak, dan penggantian pendidikan metaverse dengan AI personalisasi pendidikan.</p>
+    </div>
+    
+    <div class="toggle-container">
+      <button class="toggle-mode" onclick="toggleMode()">
+        <i class="fas fa-moon"></i> Mode Gelap / <i class="fas fa-sun"></i> Mode Terang
+      </button>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline">
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">🤖</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2025</div>
+            <div class="label">AI Generatif</div>
+            <div class="description">AI generatif menjadi mainstream di berbagai industri kreatif dan produktivitas</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">🔗</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2028</div>
+            <div class="label">Blockchain Pemerintah</div>
+            <div class="description">Integrasi blockchain dalam sistem pemerintahan untuk transparansi</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">🧬</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2029</div>
+            <div class="label">Terapi Genetik</div>
+            <div class="description">Pengobatan penyakit genetik menjadi lebih efektif dan terjangkau</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">⚡</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2030</div>
+            <div class="label">Energi Terbarukan</div>
+            <div class="change-indicator">Disesuaikan</div>
+            <div class="label">Mobil Otonom Level 4</div>
+            <div class="description">Mobil otonom mencapai level 4 dengan adopsi di kota-kota besar</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">🎓</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2031</div>
+            <div class="change-indicator">Perubahan Signifikan</div>
+            <div class="label">AI Personalisasi Pendidikan</div>
+            <div class="description">Sistem pendidikan berbasis AI yang menyesuaikan dengan gaya belajar individu</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">🚀</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2033</div>
+            <div class="change-indicator">Disesuaikan</div>
+            <div class="label">Misi Berawak ke Mars</div>
+            <div class="description">Misi manusia pertama ke Mars dengan misi jangka pendek</div>
+          </div>
+        </div>
+        
+        <div class="milestone">
+          <div class="icon-container">
+            <span class="icon">💻</span>
+          </div>
+          <div class="milestone-content">
+            <div class="year">2035</div>
+            <div class="label">Komputasi Kuantum</div>
+            <div class="description">Komputasi kuantum komersial dengan aplikasi praktis di berbagai bidang</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2024 Prediksi Teknologi Masa Depan | Berdasarkan analisis perkembangan terkini</p>
+      <p>Perubahan ditandai dengan indikator kuning</p>
+    </div>
+  </div>
+
+  <script>
+    // Toggle mode gelap/terang
+    function toggleMode() {
+      const body = document.body;
+      body.classList.toggle('light-mode');
+      
+      const button = document.querySelector('.toggle-mode');
+      if (body.classList.contains('light-mode')) {
+        button.innerHTML = '<i class="fas fa-moon"></i> Mode Gelap / <i class="fas fa-sun"></i> Mode Terang';
+      } else {
+        button.innerHTML = '<i class="fas fa-moon"></i> Mode Gelap / <i class="fas fa-sun"></i> Mode Terang';
+      }
+    }
+    
+    // Animasi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      const milestones = document.querySelectorAll('.milestone');
+      
+      setTimeout(() => {
+        milestones.forEach((milestone, index) => {
+          setTimeout(() => {
+            milestone.style.opacity = '0';
+            milestone.style.transform = 'translateY(20px)';
+            milestone.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+              milestone.style.opacity = '1';
+              milestone.style.transform = 'translateY(0)';
+            }, 100);
+          }, index * 200);
+        });
+      }, 500);
+    });
+  </script>
+</body>
+</html>

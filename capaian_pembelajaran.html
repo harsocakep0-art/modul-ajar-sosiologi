@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capaian Pembelajaran IPS - Fase E | SMA Negeri 1 Benculuk</title>
+  <meta name="description" content="Capaian Pembelajaran Mata Pelajaran Ilmu Pengetahuan Sosial (IPS) Fase E (Kelas X) berdasarkan Keputusan BSKAP Nomor 32 Tahun 2024." />
+  <meta name="robots" content="index, follow" />
+  <meta name="copyright" content="SMA Negeri 1 Benculuk, Cluring, Banyuwangi" />
+  <meta name="preservasi-konten" content="100%" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Libraries for PDF Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.8;
+      color: #333;
+      background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.8);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e88e5, #0d47a1);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin: 5px 0;
+    }
+
+    .download-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #43a047;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #2e7d32;
+      transform: translateY(-2px);
+    }
+
+    /* Tab Navigation */
+    .tab {
+      display: flex;
+      flex-wrap: wrap;
+      background: #f8f9fa;
+      border-bottom: 3px solid #e0e0e0;
+    }
+
+    .tab button {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 18px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab button i {
+      font-size: 1.2em;
+    }
+
+    .tab button:hover {
+      background: #e3f2fd;
+    }
+
+    .tab button.active {
+      background: #1e88e5;
+      color: white;
+    }
+
+    /* Tab Content */
+    .tabcontent {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.8s;
+      background: #ffffff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .tabcontent h2 {
+      color: #0d47a1;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tabcontent h2 i {
+      background: #bbdefb;
+      padding: 8px;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .tabcontent p, .tabcontent ul, .tabcontent ol {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #e3f2fd, #bbdefb);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+      color: #0d47a1;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th {
+      background: #1e88e5;
+      color: white;
+      text-align: left;
+      padding: 14px;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fdff;
+    }
+
+    tr:hover {
+      background-color: #e3f2fd;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+      .download-btn {
+        position: static;
+        width: 100%;
+        margin-top: 15px;
+        justify-content: center;
+      }
+      .tab button {
+        font-size: 0.9rem;
+        padding: 12px;
+      }
+      .container {
+        border-radius: 10px;
+      }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #0d47a1;
+      color: #bbdefb;
+      font-size: 0.95rem;
+    }
+
+    footer .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container" id="content-to-export">
+      <header>
+        <button class="download-btn" onclick="downloadPDF()">
+          <i class="fas fa-download"></i> Unduh PDF
+        </button>
+        <h1><i class="fas fa-book-open"></i> CAKUPAN PEMBELAJARAN</h1>
+        <p><strong>MATA PELAJARAN: ILMU PENGETAHUAN SOSIAL</strong></p>
+        <p><em><i class="fas fa-gavel"></i> Keputusan BSKAP Nomor: 32 Tahun 2024</em></p>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'Rasional')">
+          <i class="fas fa-lightbulb"></i> Rasional
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'Tujuan')">
+          <i class="fas fa-bullseye"></i> Tujuan
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'Karakteristik')">
+          <i class="fas fa-cogs"></i> Karakteristik
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'Capaian')">
+          <i class="fas fa-award"></i> Capaian Fase E
+        </button>
+      </div>
+
+      <!-- Tab: Rasional -->
+      <div id="Rasional" class="tabcontent" style="display: block;">
+        <h2><i class="fas fa-seedling"></i> A. Rasional</h2>
+        <p>Indonesia merupakan bangsa dengan sumber daya manusia yang besar dan sumber daya alam yang melimpah, kaya dengan budaya, suku bangsa, bahasa, serta terdiri dari berbagai agama dan kepercayaan. Secara geografis, letak Indonesia sangat strategis, sehingga menjadikan Indonesia sebagai bangsa yang sangat diperhitungkan secara geopolitik dalam kancah internasional.</p>
+        <p>Indonesia di tahun-tahun mendatang akan mengalami <span class="highlight">bonus demografi</span>, yaitu jumlah penduduk usia produktif (berusia 15–64 tahun) lebih besar dibandingkan penduduk usia tidak produktif. Keadaan ini membutuhkan solusi rasional serta terukur secara ilmiah, sehingga bonus demografi menjadi sumber kekuatan bangsa.</p>
+        <p>Sumber daya manusia Indonesia, terutama yang berusia produktif, perlu memiliki kemampuan yang mendukung kontribusi di masyarakat. Indonesia perlu menghasilkan SDM yang mampu mengelola dan menjaga sumber daya alam untuk kesejahteraan bangsa berdasarkan ilmu pengetahuan, teknologi, dan prinsip keadilan sosial.</p>
+        <p>Pendidikan <strong>Ilmu Pengetahuan Sosial (IPS)</strong> memiliki peran penting dalam hal ini. Pembelajaran IPS diharapkan lebih menggali keterampilan berpikir melalui pengembangan kompetensi dalam elemen keterampilan proses yang berpusat pada peserta didik. Dengan pendekatan pembelajaran inkuiri, IPS menjadi sarana untuk meningkatkan pengetahuan dan keterampilan terkait kehidupan masyarakat dengan lingkungannya.</p>
+        <p>IPS juga membangun komitmen dan kesadaran terhadap nilai-nilai sosial dan kemanusiaan yang menjadi modal untuk berkolaborasi dalam masyarakat majemuk, baik di tingkat lokal, nasional, maupun global, dengan tetap berpegang teguh pada nilai-nilai <strong>Pancasila</strong> sebagai kepribadian bangsa.</p>
+      </div>
+
+      <!-- Tab: Tujuan -->
+      <div id="Tujuan" class="tabcontent">
+        <h2><i class="fas fa-flag-checkered"></i> B. Tujuan</h2>
+        <p>Tujuan mata pelajaran IPS adalah peserta didik memahami konsep-konsep yang berkaitan dengan kehidupan masyarakat serta memiliki keterampilan berpikir kritis, analitis, kreatif, adaptif, dan solutif di tengah perkembangan global.</p>
+        <p><strong>Tujuan secara terperinci:</strong></p>
+        <ol>
+          <li>Memahami konsep-konsep yang berkaitan dengan kehidupan manusia dalam ruang dan waktu meliputi bidang sosial, budaya, dan ekonomi;</li>
+          <li>Memiliki keterampilan dalam berpikir kritis, berkomunikasi, membangkitkan kreativitas, dan berkolaborasi dalam masyarakat global;</li>
+          <li>Memiliki komitmen dan kesadaran terhadap nilai-nilai sosial, kemanusiaan, dan lingkungan untuk menumbuhkan kecintaan terhadap bangsa dan negara; dan</li>
+          <li>Menunjukkan hasil pemahaman konsep pengetahuan dan mengasah keterampilan melalui karya atau aksi sosial.</li>
+        </ol>
+      </div>
+
+      <!-- Tab: Karakteristik -->
+      <div id="Karakteristik" class="tabcontent">
+        <h2><i class="fas fa-brain"></i> C. Karakteristik</h2>
+        <p>Mata pelajaran IPS pada <strong>Fase E</strong> (umumnya Kelas X SMA/MA/Program Paket C) merupakan mata pelajaran dengan berbagai muatan, seperti:</p>
+        <ul>
+          <li><i class="fas fa-users"></i> Sosiologi</li>
+          <li><i class="fas fa-globe-asia"></i> Antropologi</li>
+          <li><i class="fas fa-map-marked-alt"></i> Geografi</li>
+          <li><i class="fas fa-coins"></i> Ekonomi</li>
+          <li><i class="fas fa-hourglass-half"></i> Sejarah</li>
+        </ul>
+        <p>IPS mempelajari kehidupan manusia dalam lingkup sosial, budaya, dan ekonomi di masyarakat serta dalam konteks perubahan ruang dan waktu. Peristiwa dan fenomena kehidupan manusia menjadi fokus kajian.</p>
+
+        <h2><i class="fas fa-project-diagram"></i> Elemen Pembelajaran</h2>
+        <table>
+          <tr>
+            <th style="width: 30%;"><i class="fas fa-book"></i> Elemen</th>
+            <th><i class="fas fa-align-left"></i> Deskripsi</th>
+          </tr>
+          <tr>
+            <td><strong>Pemahaman Konsep</strong></td>
+            <td>Mata pelajaran IPS diawali dengan pemahaman terhadap definisi dan konsep yang dikaitkan dengan peristiwa dan fenomena manusia. Peserta didik diajak untuk mendefinisikan, menafsirkan, dan merumuskan konsep dengan bahasa mereka sendiri, bukan hanya menghafal.</td>
+          </tr>
+          <tr>
+            <td><strong>Keterampilan Proses</strong></td>
+            <td>Pendekatan pembelajaran yang fokus pada proses: mengamati, menanya, mengumpulkan informasi, mengorganisasi, menarik kesimpulan, mengomunikasikan, merefleksikan, dan merencanakan proyek lanjutan. Mempersiapkan peserta didik menjadi warga negara cerdas di masyarakat global.</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Tab: Capaian -->
+      <div id="Capaian" class="tabcontent">
+        <h2><i class="fas fa-graduation-cap"></i> D. Capaian Pembelajaran Fase E</h2>
+        <p>Pada akhir Fase E, peserta didik:</p>
+        <ul>
+          <li>Memahami konsep dasar berbagai bidang ilmu sosial sebagai dasar berpikir kritis, analitis, kreatif, adaptif, dan solutif.</li>
+          <li>Memahami peran dan potensi diri dalam beradaptasi dengan perubahan lingkungan.</li>
+          <li>Menggali fenomena kehidupan manusia secara sistematis, menemukan persamaan dan perbedaannya dalam dimensi ruang dan waktu.</li>
+          <li>Menganalisis, menarik simpulan, dan mengomunikasikan informasi dari sumber primer/sekunder, observasi, dan dokumentasi.</li>
+          <li>Merefleksikan hasil analisis dan menyusun rencana tindak lanjut.</li>
+        </ul>
+
+        <h2><i class="fas fa-list-check"></i> Capaian per Elemen</h2>
+        <table>
+          <tr>
+            <th style="width: 30%;">Elemen</th>
+            <th>Capaian Pembelajaran</th>
+          </tr>
+          <tr>
+            <td rowspan="7"><strong>Pemahaman Konsep</strong></td>
+            <td>• Memahami fungsi sosiologi sebagai ilmu yang mengkaji masyarakat secara kritis, analitis, kreatif, dan solutif.</td>
+          </tr>
+          <tr>
+            <td>• Memahami status dan peran individu dalam kelompok sosial serta berbagai gejala sosial di masyarakat.</td>
+          </tr>
+          <tr>
+            <td>• Memahami keragaman manusia dan budayanya dalam masyarakat multikultural.</td>
+          </tr>
+          <tr>
+            <td>• Memahami hakikat ilmu ekonomi sebagai upaya manusia memenuhi kebutuhan hidup.</td>
+          </tr>
+          <tr>
+            <td>• Memahami lembaga dan produk keuangan (bank & nonbank), serta mampu membuat laporan keuangan pribadi dan menghindari risiko keuangan.</td>
+          </tr>
+          <tr>
+            <td>• Memahami konsep dasar Geografi, peta, pengindraan jauh, SIG, dan fenomena geosfer (litosfer, atmosfer, hidrosfer).</td>
+          </tr>
+          <tr>
+            <td>• Memahami konsep dasar sejarah, mengenali penelitian sejarah, dan menganalisis keterhubungan masa lampau, kini, dan masa depan dari masa kerajaan Hindu-Budha hingga Islam.</td>
+          </tr>
+          <tr>
+            <td><strong>Keterampilan Proses</strong></td>
+            <td>
+              Peserta didik:<br>
+              • Mengamati fenomena kehidupan manusia secara sistematis;<br>
+              • Membuat pertanyaan mandiri;<br>
+              • Mengumpulkan informasi dari sumber primer/sekunder, observasi, dokumentasi;<br>
+              • Menarik simpulan;<br>
+              • Mengomunikasikan hasil analisis;<br>
+              • Merefleksikan hasil dan menyusun rencana tindak lanjut.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="logo">SMA Negeri 1 Benculuk</div>
+        <p>Cluring, Banyuwangi, Jawa Timur</p>
+        <p><i class="far fa-copyright"></i> 2025 - Capaian Pembelajaran IPS Fase E</p>
+        <p><em>Preservasi Konten: 100%</em></p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- JavaScript for Tabs & PDF Export -->
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const element = document.getElementById("content-to-export");
+
+      html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+        const imgData = canvas.toDataURL("image/jpeg", 0.9);
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4"
+        });
+
+        const width = pdf.internal.pageSize.getWidth();
+        const height = (canvas.height * width) / canvas.width;
+
+        pdf.addImage(imgData, "JPEG", 0, 0, width, height);
+        pdf.save("Capaian_Pembelajaran_IPS_Fase_E_SMAN1Benculuk_2025.pdf");
+      });
+    }
+  </script>
+</body>
+</html>
