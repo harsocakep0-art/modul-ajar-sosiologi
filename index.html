@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul Pembelajaran Sosiologi - SMA Negeri 1 Cluring</title>
+    <title>Modul Pembelajaran - SMA Negeri 1 Cluring</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -29,8 +29,8 @@
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
-            position: relative;
-            padding-bottom: 120px;
+            display: flex;
+            flex-direction: column;
         }
         
         header {
@@ -200,6 +200,10 @@
             background: #e69008;
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        .main-content {
+            flex: 1;
         }
         
         .modules {
@@ -386,9 +390,8 @@
             background: var(--dark);
             color: white;
             padding: 3rem 1.5rem 2rem;
-            position: absolute;
-            bottom: 0;
             width: 100%;
+            margin-top: auto;
         }
         
         .footer-container {
@@ -546,6 +549,10 @@
             .highlight h2 {
                 font-size: 1.8rem;
             }
+            
+            .modules-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
         
         @media (max-width: 576px) {
@@ -584,6 +591,7 @@
             
             .highlight {
                 padding: 3rem 1rem;
+                margin: 2rem 0;
             }
             
             .highlight h2 {
@@ -630,198 +638,201 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Modul Pembelajaran Sosiologi</h2>
-            <p>Temukan modul pembelajaran terbaru untuk mendukung kegiatan belajar siswa SMA Negeri 1 Cluring</p>
-            <a href="#modul" class="btn">Jelajahi Modul <i class="fas fa-arrow-down"></i></a>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2>Modul Pembelajaran Sosiologi</h2>
+                <p>Temukan modul pembelajaran terbaru untuk mendukung kegiatan belajar siswa SMA Negeri 1 Cluring</p>
+                <a href="#modul" class="btn">Jelajahi Modul <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
 
-    <!-- Modul Section -->
-    <section class="modules" id="modul">
-        <h2 class="section-title">Modul Pembelajaran</h2>
-        
-        <div class="modules-grid">
-            <!-- Modul 1-4 -->
-            <div class="module-card">
-                <span class="module-badge">Dasar</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 1-4">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 1-4</h3>
-                    <p>Ruang lingkup sosiologi, kelahiran dan perkembangan sosiologi, objek kajian sosiologi, teori fungsionalisme struktural.</p>
-                    <div class="module-objectives">
-                        <h4>Pencapaian Pembelajaran:</h4>
-                        <ul>
-                            <li>Memahami konsep dasar sosiologi</li>
-                            <li>Mengetahui sejarah perkembangan ilmu sosiologi</li>
-                            <li>Mengenal teori fungsionalisme struktural</li>
-                        </ul>
-                    </div>
-                    <a href="MODULAJAR_1-4.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+        <!-- Modul Section -->
+        <section class="modules" id="modul">
+            <h2 class="section-title">Modul Pembelajaran</h2>
             
-            <!-- Modul 5-8 -->
-            <div class="module-card">
-                <span class="module-badge">Menengah</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 5-8">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 5-8</h3>
-                    <p>Teori Konflik Sosial memiliki relevansi tinggi dengan kehidupan sehari-hari.</p>
-                    <div class="module-objectives">
-                        <h4>Manfaat Pembelajaran:</h4>
-                        <ul>
-                            <li>Memahami penyebab dan dampak konflik sosial</li>
-                            <li>Menumbuhkan empati dan kemampuan melihat konflik secara objektif</li>
-                            <li>Meningkatkan kemampuan analisis permasalahan sosial</li>
-                        </ul>
+            <div class="modules-grid">
+                <!-- Modul 1-4 -->
+                <div class="module-card">
+                    <span class="module-badge">Dasar</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 1-4">
                     </div>
-                    <a href="MODULAJAR_5-8.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    <div class="module-content">
+                        <h3>Modul Ajar 1-4</h3>
+                        <p>Ruang lingkup sosiologi, kelahiran dan perkembangan sosiologi, objek kajian sosiologi, teori fungsionalisme struktural.</p>
+                        <div class="module-objectives">
+                            <h4>Pencapaian Pembelajaran:</h4>
+                            <ul>
+                                <li>Memahami konsep dasar sosiologi</li>
+                                <li>Mengetahui sejarah perkembangan ilmu sosiologi</li>
+                                <li>Mengenal teori fungsionalisme struktural</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_1-4.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modul 5-8 -->
+                <div class="module-card">
+                    <span class="module-badge">Menengah</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 5-8">
+                    </div>
+                    <div class="module-content">
+                        <h3>Modul Ajar 5-8</h3>
+                        <p>Teori Konflik Sosial memiliki relevansi tinggi dengan kehidupan sehari-hari.</p>
+                        <div class="module-objectives">
+                            <h4>Manfaat Pembelajaran:</h4>
+                            <ul>
+                                <li>Memahami penyebab dan dampak konflik sosial</li>
+                                <li>Menumbuhkan empati dan kemampuan melihat konflik secara objektif</li>
+                                <li>Meningkatkan kemampuan analisis permasalahan sosial</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_5-8.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modul 9-12 -->
+                <div class="module-card">
+                    <span class="module-badge">Lanjutan</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 9-12">
+                    </div>
+                    <div class="module-content">
+                        <h3>Modul Ajar 9-12</h3>
+                        <p>Teori Interaksionisme Simbolik dan Paradigma Ganda dalam Sosiologi.</p>
+                        <div class="module-objectives">
+                            <h4>Tujuan Pembelajaran:</h4>
+                            <ul>
+                                <li>Memahami makna simbol sosial dalam interaksi</li>
+                                <li>Membandingkan teori interaksionisme dengan teori lain</li>
+                                <li>Menyadari pentingnya keberagaman makna simbolik</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_9-12.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modul 13-14 -->
+                <div class="module-card">
+                    <span class="module-badge">Teori</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 13-14">
+                    </div>
+                    <div class="module-content">
+                        <h3>Modul Ajar 13-14</h3>
+                        <p>Memahami sifat sosiologi sebagai ilmu dan penerapan paradigma dalam fenomena sosial.</p>
+                        <div class="module-objectives">
+                            <h4>Kompetensi:</h4>
+                            <ul>
+                                <li>Menganalisis ciri-ciri ilmu pengetahuan</li>
+                                <li>Menerapkan paradigma sosiologi dalam studi kasus</li>
+                                <li>Menggabungkan pemahaman konsep dengan keterampilan analisis</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_13-14.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modul 15-16 -->
+                <div class="module-card">
+                    <span class="module-badge">Praktis</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 15-16">
+                    </div>
+                    <div class="module-content">
+                        <h3>Modul Ajar 15-16</h3>
+                        <p>Materi berkaitan dengan kehidupan sehari-hari dan mudah diamati.</p>
+                        <div class="module-objectives">
+                            <h4>Pendekatan:</h4>
+                            <ul>
+                                <li>Metode simulasi dan observasi langsung</li>
+                                <li>Diskusi kelompok dan analisis kasus</li>
+                                <li>Memadukan pengetahuan, keterampilan, dan sikap</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_15-16.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modul 17-19 -->
+                <div class="module-card">
+                    <span class="module-badge">Penelitian</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 17-19">
+                    </div>
+                    <div class="module-content">
+                        <h3>Modul Ajar 17-19</h3>
+                        <p>Metode Penelitian Sosial untuk pengembangan keterampilan analitis.</p>
+                        <div class="module-objectives">
+                            <h4>Kegiatan:</h4>
+                            <ul>
+                                <li>Memahami metode penelitian kuantitatif dan kualitatif</li>
+                                <li>Praktik penyusunan instrumen penelitian</li>
+                                <li>Observasi sosial dan penyusunan laporan</li>
+                            </ul>
+                        </div>
+                        <a href="MODULAJAR_17-19.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Capaian Pembelajaran -->
+                <div class="module-card">
+                    <span class="module-badge">Evaluasi</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Capaian Pembelajaran">
+                    </div>
+                    <div class="module-content">
+                        <h3>Capaian Pembelajaran</h3>
+                        <p>Standar kompetensi dan indikator pencapaian untuk setiap mata pelajaran sosiologi.</p>
+                        <div class="module-objectives">
+                            <h4>Fokus:</h4>
+                            <ul>
+                                <li>Evaluasi pembelajaran sosiologi</li>
+                                <li>Indikator pencapaian kompetensi</li>
+                                <li>Pengembangan instrumen penilaian</li>
+                            </ul>
+                        </div>
+                        <a href="capaian_pembelajaran.html" class="btn-secondary">Lihat Capaian <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Perkembangan Teknologi -->
+                <div class="module-card">
+                    <span class="module-badge">Inovasi</span>
+                    <div class="module-image">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Perkembangan Teknologi">
+                    </div>
+                    <div class="module-content">
+                        <h3>Perkembangan Teknologi</h3>
+                        <p>Pembaruan terbaru dalam teknologi pendidikan dan alat pembelajaran digital.</p>
+                        <div class="module-objectives">
+                            <h4>Topik:</h4>
+                            <ul>
+                                <li>Teknologi pendidikan terkini</li>
+                                <li>Alat pembelajaran digital</li>
+                                <li>Trend teknologi 2025-2035</li>
+                            </ul>
+                        </div>
+                        <a href="perkembangan_tekhnologi.html" class="btn-secondary">Pelajari Lebih <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Modul 9-12 -->
-            <div class="module-card">
-                <span class="module-badge">Lanjutan</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 9-12">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 9-12</h3>
-                    <p>Teori Interaksionisme Simbolik dan Paradigma Ganda dalam Sosiologi.</p>
-                    <div class="module-objectives">
-                        <h4>Tujuan Pembelajaran:</h4>
-                        <ul>
-                            <li>Memahami makna simbol sosial dalam interaksi</li>
-                            <li>Membandingkan teori interaksionisme dengan teori lain</li>
-                            <li>Menyadari pentingnya keberagaman makna simbolik</li>
-                        </ul>
-                    </div>
-                    <a href="MODULAJAR_9-12.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Modul 13-14 -->
-            <div class="module-card">
-                <span class="module-badge">Teori</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 13-14">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 13-14</h3>
-                    <p>Memahami sifat sosiologi sebagai ilmu dan penerapan paradigma dalam fenomena sosial.</p>
-                    <div class="module-objectives">
-                        <h4>Kompetensi:</h4>
-                        <ul>
-                            <li>Menganalisis ciri-ciri ilmu pengetahuan</li>
-                            <li>Menerapkan paradigma sosiologi dalam studi kasus</li>
-                            <li>Menggabungkan pemahaman konsep dengan keterampilan analisis</li>
-                        </ul>
-                    </div>
-                    <a href="MODULAJAR_13-14.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Modul 15-16 -->
-            <div class="module-card">
-                <span class="module-badge">Praktis</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 15-16">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 15-16</h3>
-                    <p>Materi berkaitan dengan kehidupan sehari-hari dan mudah diamati.</p>
-                    <div class="module-objectives">
-                        <h4>Pendekatan:</h4>
-                        <ul>
-                            <li>Metode simulasi dan observasi langsung</li>
-                            <li>Diskusi kelompok dan analisis kasus</li>
-                            <li>Memadukan pengetahuan, keterampilan, dan sikap</li>
-                        </ul>
-                    </div>
-                    <a href="MODULAJAR_15-16.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Modul 17-19 -->
-            <div class="module-card">
-                <span class="module-badge">Penelitian</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modul 17-19">
-                </div>
-                <div class="module-content">
-                    <h3>Modul Ajar 17-19</h3>
-                    <p>Metode Penelitian Sosial untuk pengembangan keterampilan analitis.</p>
-                    <div class="module-objectives">
-                        <h4>Kegiatan:</h4>
-                        <ul>
-                            <li>Memahami metode penelitian kuantitatif dan kualitatif</li>
-                            <li>Praktik penyusunan instrumen penelitian</li>
-                            <li>Observasi sosial dan penyusunan laporan</li>
-                        </ul>
-                    </div>
-                    <a href="MODULAJAR_17-19.html" class="btn-secondary">Buka Modul <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Capaian Pembelajaran -->
-            <div class="module-card">
-                <span class="module-badge">Evaluasi</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Capaian Pembelajaran">
-                </div>
-                <div class="module-content">
-                    <h3>Capaian Pembelajaran</h3>
-                    <p>Standar kompetensi dan indikator pencapaian untuk setiap mata pelajaran sosiologi.</p>
-                    <div class="module-objectives">
-                        <h4>Fokus:</h4>
-                        <ul>
-                            <li>Evaluasi pembelajaran sosiologi</li>
-                            <li>Indikator pencapaian kompetensi</li>
-                            <li>Pengembangan instrumen penilaian</li>
-                        </ul>
-                    </div>
-                    <a href="capaian_pembelajaran.html" class="btn-secondary">Lihat Capaian <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Perkembangan Teknologi -->
-            <div class="module-card">
-                <span class="module-badge">Inovasi</span>
-                <div class="module-image">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Perkembangan Teknologi">
-                </div>
-                <div class="module-content">
-                    <h3>Perkembangan Teknologi</h3>
-                    <p>Pembaruan terbaru dalam teknologi pendidikan dan alat pembelajaran digital.</p>
-                    <div class="module-objectives">
-                        <h4>Topik:</h4>
-                        <ul>
-                            <li>Teknologi pendidikan terkini</li>
-                            <li>Alat pembelajaran digital</li>
-                            <li>Trend teknologi 2025-2035</li>
-                        </ul>
-                    </div>
-                    <a href="perkembangan_tekhnologi.html" class="btn-secondary">Pelajari Lebih <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Highlight Section -->
-    <section class="highlight" id="capaian">
-        <div class="highlight-container">
-            <h2>Capaian Pembelajaran Unggulan</h2>
-            <p>Di SMA Negeri 1 Cluring, kami berkomitmen untuk memberikan pendidikan sosiologi terbaik yang mempersiapkan siswa menghadapi tantangan masyarakat modern. Modul pembelajaran kami dirancang untuk mencapai standar kompetensi tinggi dengan pendekatan pembelajaran yang inovatif dan berbasis teknologi.</p>
-            <a href="capaian_pembelajaran.html" class="btn">Lihat Capaian Pembelajaran <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </section>
+        <!-- Highlight Section -->
+        <section class="highlight" id="capaian">
+            <div class="highlight-container">
+                <h2>Capaian Pembelajaran Unggulan</h2>
+                <p>Di SMA Negeri 1 Cluring, kami berkomitmen untuk memberikan pendidikan sosiologi terbaik yang mempersiapkan siswa menghadapi tantangan masyarakat modern. Modul pembelajaran kami dirancang untuk mencapai standar kompetensi tinggi dengan pendekatan pembelajaran yang inovatif dan berbasis teknologi.</p>
+                <a href="capaian_pembelajaran.html" class="btn">Lihat Capaian Pembelajaran <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer id="kontak">
@@ -832,7 +843,9 @@
                 </div>
                 <div class="contact-info">
                     <p><i class="fas fa-map-marker-alt"></i> Jalan Huzaini - Benculuk - Cluring - Banyuwangi</p>
-                    <p><i class="fas fa-clock"></i> Senin-Jumat: 06:45 - 15:00 WIB</p>
+                    <p><i class="fas fa-phone"></i> (0333) 1234567</p>
+                    <p><i class="fas fa-envelope"></i> info@sman1cluring.sch.id</p>
+                    <p><i class="fas fa-clock"></i> Senin-Jumat: 07:00 - 15:00 WIB</p>
                 </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
